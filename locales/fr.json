@@ -1,0 +1,13 @@
+{
+	"Hello": "Bonjour",
+	"How are you?": "Comment allez vous?",
+	"I have %s message": {
+		"one": "Vous avez le message %s",
+		"other": "Vous avez le message% s"
+	},
+	"This is a translation helper,": "This is a translation helper,",
+	"You have %s message": {
+		"one": "You have %s message",
+		"other": "You have %s message"
+	}
+}

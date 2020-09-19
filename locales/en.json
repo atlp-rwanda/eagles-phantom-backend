@@ -1,0 +1,13 @@
+{
+	"Hello": "Hello",
+	"How are you?": "How are you doing?",
+	"I have %s message": {
+		"one": "You have %s message",
+		"other": "You have %s messages"
+	},
+	"This is a translation helper,": "This is a translation helper,",
+	"You have %s message": {
+		"one": "You have %s message",
+		"other": "You have %s message"
+	}
+}
