@@ -13,6 +13,7 @@ const router = Router();
  *   post:
  *     tags:
  *       - Buses
+ *     summary: create a bus
  *     name: Create Buses
  *     produces:
  *       - application/json
@@ -58,6 +59,7 @@ router.post('/buses', checkUser, isAdmin, [validateBusInfo], controllers.createB
  *   get:
  *     tags:
  *       - Buses
+ *     summary: get all buses
  *     name: Retrieve all Buses
  *     produces:
  *       - application/json
@@ -95,6 +97,7 @@ router.get('/buses', checkUser, isAdmin, controllers.getAllBuses);
  *   get:
  *     tags:
  *       - Buses
+ *     summary: get Bus by Id
  *     name: Retrieve a Bus
  *     produces:
  *       - application/json
@@ -123,6 +126,7 @@ router.get('/buses/:id', checkUser, isAdmin, controllers.getBusById);
  *   patch:
  *     tags:
  *       - Buses
+ *     summary: update Bus
  *     name: Update Buses
  *     produces:
  *       - application/json
@@ -172,6 +176,7 @@ router.patch('/buses/:id', checkUser, isAdmin, [validateBusUpdate], controllers.
  *   delete:
  *     tags:
  *       - Buses
+ *     summary: delete Bus
  *     name: Delete Buses
  *     produces:
  *       - application/json

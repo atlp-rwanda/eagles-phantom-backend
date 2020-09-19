@@ -6,6 +6,7 @@ import i18n from 'i18n';
 import routes from './routers';
 import router from './routers/bus.routers';
 
+
 dotenv.config();
 
 const app = express();
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(routes);
+app.use(cors());
 
 app.use(router);
 
