@@ -7,8 +7,8 @@ export const forgot = Joi.object().keys({
 export const validationErrorForgotten = (req, res, next) => {
   const { error } = forgot.validate(req.body);
   if (error) {
-    res.status(400).json({
-      status: 400,
+    res.status(401).json({
+      status: 401,
       message: error.details[0].message.replace(/"/g, ''),
     });
   }

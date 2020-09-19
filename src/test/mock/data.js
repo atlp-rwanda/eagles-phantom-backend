@@ -17,6 +17,15 @@ const user = [
     role: 'admin',
   },
   {
+    firstname: 'KARANGWA',
+    lastname: 'Ntwali Josue',
+    email: 'kntwalijos@gmail.com',
+    dateofbirth: '1/1/2020',
+    gender: 'Male',
+    address: 'Kanombe',
+    role: 'operator',
+  },
+  {
     firstname: 'Josh@gmail.com',
     lastname: 'Josh@gmail.com',
     email: 'Josh@gmail.com',
@@ -57,4 +66,5 @@ const user = [
     role: 'operator',
   },
 ];
+
 export default user;

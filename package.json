@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "test": "npm run migrate:reset && npm run seed && cross-env NODE_ENV=test npm run migrate:reset && npm run seed:test && nyc --reporter=html --reporter=text --all=true mocha --require @babel/polyfill --require @babel/register src/test/*.js --timeout 5000000 --exit",    
+    "test": "npm run migrate:reset && npm run seed && cross-env NODE_ENV=test npm run migrate:reset && npm run seed:test && nyc --reporter=html --reporter=text --all=true mocha --require @babel/polyfill --require @babel/register src/test/*.js --timeout 5000000 --exit",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "test-coveralls": "nyc npm run mocha && shx cat ./coverage/lcov.info | node ./bin/coveralls.js --verbose",
     "test:coverage": "jest --coverage",
@@ -17,6 +17,13 @@
     "build-src": "babel -d ./build ./src -s",
     "build": "npm run migrate:heroku && npm run clean && npm run build-src",
     "start": "node --require @babel/polyfill build/app.js"
+  },
+  "nyc": {
+    "exclude": [
+      "src/database/migrations",
+      "src/database/seeders",
+      "coverage"
+    ]
   },
   "repository": {
     "type": "git",
@@ -53,8 +60,10 @@
     "i18n": "^0.13.2",
     "jest": "^26.5.2",
     "jsonwebtoken": "^8.5.1",
+    "mocha": "^8.2.1",
     "nodemon": "^2.0.4",
-    "pg": "^8.4.1",
+    "paginate-info": "^1.0.4",
+    "pg": "^8.4.0",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.3.5",
     "sequelize-cli": "^6.2.0",
@@ -71,7 +80,6 @@
     "eslint-plugin-import": "^2.22.1",
     "istanbul": "^0.4.5",
     "jshint": "^2.12.0",
-    "mocha": "^8.1.3",
     "mocha-lcov-reporter": "^1.3.0",
     "nyc": "^15.1.0",
     "sinon": "^9.0.3"

@@ -15,7 +15,6 @@ const expiredTokenLink = encodeExpire(user[7]);
 const fakeTokenLink = `${driverToken}abc`;
 const prefix1 = `/api/v1/auth/reset-password/${fakeTokenLink}`;
 const prefix2 = `/api/v1/auth/reset-password/${expiredTokenLink}`;
-const prefix3 = `/api/v1/auth/reset-password/${driverToken}`;
 
 describe('Tests for the forgotten link and the reseting password of the users', () => {
   it('Should not be able to reset the password if the reset link has a problem', (done) => {
@@ -23,9 +22,9 @@ describe('Tests for the forgotten link and the reseting password of the users', 
       .put(prefix1)
       .send(user[4])
       .end((error, res) => {
-        expect(res).to.have.status([401]);
+        expect(res).to.have.status([400]);
         expect(res.body).to.have.property('status');
-        expect(res.body.status).to.be.equal(401);
+        expect(res.body.status).to.be.equal(400);
         expect(res.body).to.have.property('message');
         expect(res.body.message).to.be.a('string');
         done(error);
@@ -36,9 +35,9 @@ describe('Tests for the forgotten link and the reseting password of the users', 
       .put(prefix2)
       .send(user[4])
       .end((error, res) => {
-        expect(res).to.have.status([401]);
+        expect(res).to.have.status([400]);
         expect(res.body).to.have.property('status');
-        expect(res.body.status).to.be.equal(401);
+        expect(res.body.status).to.be.equal(400);
         expect(res.body).to.have.property('message');
         expect(res.body.message).to.be.a('string');
         done(error);
@@ -49,9 +48,9 @@ describe('Tests for the forgotten link and the reseting password of the users', 
       .post(prefix)
       .send(user[8])
       .end((error, res) => {
-        expect(res).to.have.status([201]);
+        expect(res).to.have.status([403]);
         expect(res.body).to.have.property('status');
-        expect(res.body.status).to.be.equal(201);
+        expect(res.body.status).to.be.equal(403);
         expect(res.body).to.have.property('message');
         expect(res.body.message).to.be.a('string');
         done(error);
@@ -62,9 +61,9 @@ describe('Tests for the forgotten link and the reseting password of the users', 
       .post(prefix)
       .send(user[7])
       .end((error, res) => {
-        expect(res).to.have.status([201]);
+        expect(res).to.have.status([403]);
         expect(res.body).to.have.property('status');
-        expect(res.body.status).to.be.equal(201);
+        expect(res.body.status).to.be.equal(403);
         expect(res.body).to.have.property('message');
         expect(res.body.message).to.be.a('string');
         done(error);
@@ -101,9 +100,9 @@ describe('Tests for the forgotten link and the reseting password of the users', 
       .post(prefix)
       .send(user[11])
       .end((error, res) => {
-        expect(res).to.have.status([400]);
+        expect(res).to.have.status([403]);
         expect(res.body).to.have.property('status');
-        expect(res.body.status).to.be.equal(400);
+        expect(res.body.status).to.be.equal(403);
         expect(res.body).to.have.property('message');
         expect(res.body.message).to.be.a('string');
         done(error);
