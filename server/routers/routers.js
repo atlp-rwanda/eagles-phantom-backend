@@ -3,6 +3,6 @@ import welcome from '../controllers/user';
 
 const router = express.Router();
 
-router.get('/', welcome);
+router.get("/", welcome);
 
 export default router;
