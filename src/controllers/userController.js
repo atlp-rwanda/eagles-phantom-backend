@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import mail from '@sendgrid/mail';
 import { v4 as uuidv4 } from 'uuid';
-import bcrypt, { hashSync } from 'bcryptjs';
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import Models from '../database/models';
 import { password } from '../utils/password';
@@ -67,6 +67,7 @@ class register {
   }
 
   static async login(req, res) {
+    // eslint-disable-next-line no-shadow
     const { email, password } = req.body;
     try {
       const user = await Users.findOne({
@@ -94,7 +95,7 @@ class register {
     } catch (error) {
       return res.status(500).json({
         status: 500,
-        error: 'Server Error',
+        error: error.message,
       });
     }
   }
@@ -142,7 +143,7 @@ class register {
         exclude: ['password'],
       },
     });
-    res.status(200).json({
+    return res.status(200).json({
       status: 'success',
       data: {
         users,
@@ -176,8 +177,8 @@ class register {
         html: `<h2> Dear customer we are pleased to give you this link to reset your password, follow the instructions: </h2><h3>paste the whole link in in postman and send the request with the newpassword, using a json format</h3><p>localhost:3020/api/v1/auth/reset-password/${resetToken}</p>`,
       };
       mail.send(forgottenMail);
-      return res.status(201).json({
-        status: 201,
+      return res.status(403).json({
+        status: 403,
         message: res.__('the link has been sent successfully to the provided email'),
       });
     } catch (error) {
@@ -194,7 +195,7 @@ class register {
       process.env.SECRET_KEY,
       (err, decodeData) => {
         if (err) {
-          return res.status(401).json({ status: 401, message: res.__('Invalid or expired Token') });
+          return res.status(401).json({ status: 400, message: res.__('Invalid or expired Token') });
         }
       },
     );
@@ -202,8 +203,8 @@ class register {
       where: { resetlink: req.params.resetToken },
     });
     if (!user) {
-      return res.status(404).json({
-        status: 404,
+      return res.status(403).json({
+        status: 403,
         message: res.__('this user doesn`t exist in the system'),
       });
     }
@@ -218,8 +219,8 @@ class register {
 
     await user.update({ password: cryption, resetlink: '' });
 
-    return res.status(200).json({
-      status: 200,
+    return res.status(403).json({
+      status: 403,
       Message: res.__('Password changed Successfully'),
     });
   }

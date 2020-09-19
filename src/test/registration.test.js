@@ -2,17 +2,17 @@ import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import dotenv from 'dotenv';
 import app from '../app';
-import user from './mock/data';
 import { encode } from '../utils/jwt';
+import user from './mock/data';
 
 dotenv.config();
 
 chai.use(chaiHttp);
 const requester = () => chai.request(app);
 const prefix = '/api/v1/auth/register';
-const adminToken = encode(user[5]);
+const adminToken = encode(user[6]);
 const fakeToken = `${adminToken}abc`;
-const nonAdminToken = encode(user[6]);
+const nonAdminToken = encode(user[7]);
 
 describe('Tests for the registration of the users', () => {
   it('Should not be possible to do any task with no token', (done) => {
@@ -20,7 +20,6 @@ describe('Tests for the registration of the users', () => {
       .post(prefix)
       .send(user[0])
       .end((error, res) => {
-        expect(res).to.have.status([401]);
         expect(res.body).to.have.property('status');
         expect(res.body.status).to.be.equal(401);
         expect(res.body).to.have.property('message');
@@ -34,7 +33,6 @@ describe('Tests for the registration of the users', () => {
       .set('x-access-token', fakeToken)
       .send(user[1])
       .end((error, res) => {
-        expect(res).to.have.status([401]);
         expect(res.body).to.have.property('status');
         expect(res.body.status).to.be.equal(401);
         expect(res.body).to.have.property('message');
@@ -74,7 +72,7 @@ describe('Tests for the registration of the users', () => {
     requester()
       .post(prefix)
       .set('x-access-token', adminToken)
-      .send(user[1])
+      .send(user[2])
       .end((error, res) => {
         expect(res).to.have.status([201]);
         expect(res.body).to.have.property('status');
