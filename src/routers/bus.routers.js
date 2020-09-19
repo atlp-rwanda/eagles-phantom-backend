@@ -88,6 +88,7 @@ router.post('/buses', checkUser, isAdmin, [validateBusInfo], controllers.createB
  *             description: The bus you're trying to reach doesn't exist.
  */
 router.get('/buses', checkUser, isAdmin, controllers.getAllBuses);
+
 /**
  * @swagger
  * /api/v1/buses/{id}:

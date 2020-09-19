@@ -4,16 +4,18 @@ import welcome from '../controllers/Welcome';
 const router = express.Router();
 
 /**
- * @swagger
+* @swagger
 * /:
 *   get:
 *     description: Display welcome message
 *     produces:
 *       - application/json
+*     consumes:
+*       - application/json
 *     responses:
-*       200:
+*       '200':
 *         description:Welcome to phantom, a platform to facilitate the transportation mode in town!.
-*/
+* */
 
 router.get('/', welcome);
 

@@ -22,6 +22,8 @@ router.get('/', welcome);
 */
 router.post('/api/auth/login', userController.login);
 
+router.get('/', welcome);
+
 router.use('/api-docs', swagger);
 
 export default router;
