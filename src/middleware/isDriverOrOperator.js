@@ -17,7 +17,6 @@ const isDriverOrOperator = async (req, res, next) => {
       .status(403)
       .json({ status: 403, message: res.__('Your role is not a driver or operator') });
   }
-  next();
 };
 
 export default isDriverOrOperator;

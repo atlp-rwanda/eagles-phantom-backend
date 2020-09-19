@@ -1,7 +1,9 @@
 import express from 'express';
 import userController from '../controllers/registcontroller';
 import checkUser from '../middleware/checkUser';
+import users from '../controllers/users';
 import { validationError } from '../validations/signup';
+import validRole from '../validations/validRole';
 import { validation } from '../validations/updateProfile';
 import { validationErrorForgotten } from '../validations/validationErrorForgotten';
 import { validationErrorReset } from '../validations/validationErrorReset';
@@ -127,7 +129,7 @@ router.post('/forgotten-link', isDriverOrOperator, validationErrorForgotten, use
 * /api/v1/auth/reset-password/{resetToken}:
 *   put:
 *     tags:
-*       - User
+*       - Users
 *     name: reset password
 *     summary: reset user password
 *     produces:
@@ -200,5 +202,89 @@ router.put('/reset-password/:resetToken', validationErrorReset, userController.r
 * */
 
 router.patch('/updateprofile', checkUser, validation, userController.updateProfile);
+/** 
+ * @swagger
+ * /api/v1/users/{userId}:
+ *   get:
+ *     tags:
+*       - Users
+ *     description: Get user by Id
+ *     summary: get user by id
+ *     parameters:
+ *          - name: userId
+ *            description: id of user to get by
+ *            in: path
+ *            type: integer
+ *            required: true
+ *          - name: x-access-token
+ *            in: header
+ *            description: jwt token of the user
+ *     responses:
+ *       200:
+ *         description: user successfully found
+ *       401:
+ *         description: you don't permissions
+ * */
+router.get('/:userId',checkUser, isAdmin,users.getUserbyId);
 
+/**
+ * @swagger
+ * /api/v1/users:
+ *   get:
+ *     tags:
+ *       - Users
+ *     description: get All users
+ *     summary: get all users
+ *     name: Retrieve all Users
+ *     produces:
+ *       - application/json
+ *     consumes:
+ *       - application/json
+ *     parameters:
+ *       - name: x-access-token
+ *         in: header
+ *         description: jwt token of the user
+ *     responses:
+ *       '200':
+ *             description: Users retrieved successufully.
+ *       '403':
+ *             description: There are no Users registered in the system.
+ */
+router.get('/',checkUser,isAdmin,users.getUsers);
+/** 
+ * @swagger
+ * /api/v1/users/{userId}:
+ *   patch:
+ *     tags:
+ *       - Users
+ *     description: Update user by Id
+ *     summary: update user role
+ *     parameters:
+ *          - name: userId
+ *            description: id of user to update by
+ *            in: path
+ *            type: integer
+ *            required: true
+ *          - name: x-access-token
+ *            in: header
+ *            description: jwt token of the user
+ *     requestBody:
+ *          content:
+ *            application/json:
+ *              schema:
+ *                type: object
+ *                properties:
+ *                  role:
+ *                      type: string
+ *                required:
+ *                  - role
+ *     responses:
+ *       200:
+ *         description: User role created
+ *       401:
+ *         description: you don't permissions
+ *       400:
+ *         descriptuion: Bad request
+ * */
+router.patch('/:userId',checkUser, isAdmin,validRole,users.updateUser);
 export default router;
