@@ -1,10 +1,15 @@
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerui from 'swagger-ui-express';
+
 import os from 'os';
-import { Router } from 'express';
+
+import pkg from 'express';
+// import { Router } from 'express';
 import dotenv from 'dotenv';
 
 dotenv.config();
+
+const Router = pkg;
 
 const router = Router();
 
@@ -16,6 +21,7 @@ const swaggerDefinition = {
       description:
             'We facilitate the transport of our client',
     },
+
     servers: [{
       url: 'http://localhost:4000',
       name: `${os.hostname()}`,
@@ -26,7 +32,7 @@ const swaggerDefinition = {
     },
     ],
   },
-  apis: ['./server/routers/routers.js'],
+  apis: ['./src/routers/routers.js'],
 };
 
 const swaggerDocument = swaggerJSDoc(swaggerDefinition);
