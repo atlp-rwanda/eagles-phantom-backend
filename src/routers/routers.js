@@ -1,6 +1,7 @@
 import express from 'express';
-import welcome from '../controllers/user';
-import swagger from '../swagger/index';
+import welcome from '../controllers/user.js';
+// import translator from '../languages/config.js';
+import swagger from '../swagger/index.js';
 
 const router = express.Router();
 
@@ -19,5 +20,7 @@ const router = express.Router();
 router.get('/', welcome);
 
 router.use('/api-docs', swagger);
+
+// router.get('/?lang=fr', translator);
 
 export default router;
