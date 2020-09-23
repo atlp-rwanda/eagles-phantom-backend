@@ -4,8 +4,8 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import swaggerUI from 'swagger-ui-express';
 // import swagger from '../swagger.json';
-import routes from './routers/routers.js';
-import translator from './languages/config.js';
+import routes from './routers/routers';
+import translator from './languages/config';
 
 dotenv.config();
 

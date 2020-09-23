@@ -1,4 +1,4 @@
-import app from '../languages/config.js';
+import app from '../languages/config';
 
 const welcome = app.get('/', (req, res) => {
   res.status(200).json({
