@@ -1,3 +1,4 @@
+import url from 'url'
 /**
  * LocaleService
  */
@@ -53,6 +54,20 @@ export class LocaleService {
      * @returns {string} Translated string
      */
     translatePlurals(phrase, count) {
-      return this.i18nProvider.__(phrase, count)
+      return this.i18nProvider.__n(phrase, count)
+    }
+
+    getMiddleWare() {
+      return (req, res, next) => {
+        const queryParameter = 'lang';
+        if (req.url) {
+          const urlObj = url.parse(req.url, true);
+          if (urlObj.query[queryParameter]) {
+            const language = urlObj.query[queryParameter].toLowerCase();
+            this.setLocale(language);
+          }
+        }
+        next();
+      }
     }
   }
