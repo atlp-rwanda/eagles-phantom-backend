@@ -11,5 +11,9 @@
         "sourceType": "module"
     },
     "rules": {
+<<<<<<< HEAD
+=======
+        "import/no-extraneous-dependencies":["error", {"devDependencies": false, "optionalDependencies": false, "peerDependencies": false}]
+>>>>>>> 51c1f57dd8348cb27566513fb45c7d12cba4520f
     }
 }

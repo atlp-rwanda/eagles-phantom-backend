@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon --exec babel-node ./server/app.js"
+    "dev": "nodemon --exec babel-node ./server/app.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
     "@babel/preset-env": "^7.11.5",
     "@babel/register": "^7.11.5",
     "@babel/runtime": "^7.11.2",
+    "awilix": "^4.2.6",
     "cors": "^2.8.5",
     "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
@@ -33,7 +34,8 @@
   "devDependencies": {
     "eslint": "^7.9.0",
     "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-plugin-import": "^2.22.0"
+    "eslint-plugin-import": "^2.22.0",
+    "i18n": "^0.13.2"
   },
   "description": ""
 }
