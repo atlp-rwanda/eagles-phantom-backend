@@ -2,7 +2,6 @@
   "name": "eagles-phantom-backend",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text --all=true mocha --require @babel/polyfill --require @babel/register  src/*.js --timeout 2000000 --exit",
     "coverage": "nyc npm run test",
@@ -32,6 +31,8 @@
     "@babel/register": "^7.11.5",
     "@babel/runtime": "^7.11.2",
     "body-parser": "^1.19.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "ci": "^1.0.0",
     "cors": "^2.8.5",
     "cross-env": "^7.0.2",
@@ -48,8 +49,8 @@
     "swagger-ui-express": "^4.1.4"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
-    "chai-http": "^4.3.0",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "coverage": "^0.4.1",
     "coveralls": "^3.1.0",
     "eslint": "^7.9.0",
     "eslint-config-airbnb-base": "^14.2.0",
