@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "migrate":"sequelize db:migrate",
+    "seed":"sequelize db:seed:all",
     "dev": "nodemon --exec babel-node ./server/app.js"
   },
   "repository": {
@@ -29,6 +31,10 @@
     "express": "^4.17.1",
     "glob": "^7.1.6",
     "nodemon": "^2.0.4",
+    "pg": "^8.3.3",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.3.5",
+    "sequelize-cli": "^6.2.0",
     "swagger-jsdoc": "^4.0.0",
     "swagger-ui-express": "^4.1.4"
   },

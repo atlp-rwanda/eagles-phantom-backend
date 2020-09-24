@@ -5,12 +5,19 @@ module.exports = {
     'Users',
   [
    {
-        name: 'Joe Dan',
-        email: 'jdan@example.com',
-        phone:'0787976559',
+        name: 'Innocent Ngenzi',
+        email: 'ngenzi@hirwa.com',
+        phone:'07878667345',
         createdAt: new Date(),
         updatedAt: new Date(),
-   }
+   },
+   {
+    name: 'John Peter',
+    email: 'pjohn@hirwa.com',
+    phone:'07878663445',
+    createdAt: new Date(),
+    updatedAt: new Date(),
+}
   ],
   {},
   ),
