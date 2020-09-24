@@ -5,8 +5,8 @@ module.exports = {
     'Users',
   [
    {
-        name: 'Joe Dan',
-        email: 'jdan@example.com',
+        name: 'Jidenna Hey',
+        email: 'jidenna@example.com',
         phone:'0787976559',
         createdAt: new Date(),
         updatedAt: new Date(),
