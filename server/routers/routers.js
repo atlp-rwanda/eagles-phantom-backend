@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import express from 'express';
 import swaggerUI from 'swagger-ui-express';
 import welcome from '../controllers/user';

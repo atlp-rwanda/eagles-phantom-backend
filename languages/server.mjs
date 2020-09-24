@@ -1,10 +1,17 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable consistent-return */
+/* eslint-disable linebreak-style */
+/* eslint-disable no-console */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable import/prefer-default-export */
+/* eslint-disable linebreak-style */
 
 import express from 'express';
 import consolidate from 'consolidate';
 import cookieParser from 'cookie-parser';
 
 export class Server {
-  constructor({i18nProvider, localeService}) {
+  constructor({ i18nProvider, localeService }) {
     this.express = express();
     this.express.disable('x-powered-by');
 
@@ -20,28 +27,28 @@ export class Server {
       res.locals.i18n = () => (text, render) => req.__(text, render);
       next();
     });
-    
+
     this.express.use((req, res, next) => {
       // mustache helper
       res.locals.i18np = () => (text, render) => {
         const parts = text.split(',');
         if (parts.length > 1) {
           const renderedCount = render(parts[1]);
-          return req.__n(parts[0], renderedCount, render)
+          return req.__n(parts[0], renderedCount, render);
         }
       };
       next();
     });
 
     this.express.get('/:name?', (req, res) => {
-      const name = req.params.name;
+      const { name } = req.params;
 
       res.render('index', {
-        'currentLocale': res.locale,
-        'name': name || 'Josh',
-        'hello': req.__('Hello'),
-        'messageCount': 5,
-        'message': req.__('How are you?')
+        currentLocale: res.locale,
+        name: name || 'Josh',
+        hello: req.__('Hello'),
+        messageCount: 5,
+        message: req.__('How are you?'),
       });
     });
   }
