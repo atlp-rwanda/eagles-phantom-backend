@@ -27,7 +27,7 @@ const swaggerDefinition = {
       name: `${os.hostname()}`,
     },
     {
-      url: `https://${process.env.HEROKU_APP_NAME}.herokuapp.com`,
+      url: `https://phantom-eagles-backend.herokuapp.com`,
       name: `${os.hostname()}`,
     },
     ],
@@ -39,4 +39,4 @@ const swaggerDocument = swaggerJSDoc(swaggerDefinition);
 
 router.use('/', swaggerui.serve, swaggerui.setup(swaggerDocument));
 
-export default router;
+export default router; 

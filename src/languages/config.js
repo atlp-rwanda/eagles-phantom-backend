@@ -6,6 +6,8 @@ const app = express();
 
 i18n.configure({
   locales: ['en', 'fr', 'kiny'],
+  header: 'accept-language',
+  autoReload: true,
   directory: path.join('./src/languages', '/locales'),
   defaultLocale: 'en',
   queryParameter: 'lang',
