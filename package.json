@@ -1,7 +1,7 @@
 {
   "name": "eagles-phantom-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text --all=true mocha --require @babel/polyfill --require @babel/register  src/*.js --timeout 2000000 --exit",
     "coverage": "nyc npm run test",
@@ -10,7 +10,11 @@
     "dev": "cross-env NODE_ENV=development nodemon --exec babel-node  ./src/app.js",
     "migrate:reset": "npx sequelize-cli db:migrate:undo:all && npm run migrate",
     "migrate": "sequelize db:migrate",
-    "seed": "sequelize db:seed:all"
+    "seed": "sequelize db:seed:all",
+    "clean": "rm -rf build && mkdir build",
+    "build-babel": "babel -d ./build ./src -s",
+    "build": "npm run clean && npm run build-babel",
+    "start": "npm run build && node ./build/app.js"
   },
   "repository": {
     "type": "git",
@@ -49,7 +53,6 @@
     "swagger-ui-express": "^4.1.4"
   },
   "devDependencies": {
-    "babel-plugin-module-resolver": "^4.0.0",
     "coverage": "^0.4.1",
     "coveralls": "^3.1.0",
     "eslint": "^7.9.0",
