@@ -21,7 +21,7 @@ const swaggerDefinition = {
       name: `${os.hostname()}`,
     },
     {
-      url: `https://${process.env.HEROKU_APP_NAME}.herokuapp.com`,
+      url: `https://phantom-eagles-backend.herokuapp.com`,
       name: `${os.hostname()}`,
     },
     ],
