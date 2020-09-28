@@ -7,7 +7,9 @@
     "coverage": "nyc npm run test",
     "test-coveralls": "nyc npm run mocha && shx cat ./coverage/lcov.info | node ./bin/coveralls.js --verbose",
     "test:coverage": "jest --coverage",
-    "dev": "cross-env NODE_ENV=development nodemon --exec babel-node ./server/app.js"
+    "dev": "cross-env NODE_ENV=development nodemon --exec babel-node ./server/app.js",
+    "migrate": "sequelize db:migrate",
+    "seed": "sequelize db:seed:all"
   },
   "repository": {
     "type": "git",
@@ -33,6 +35,10 @@
     "express": "^4.17.1",
     "glob": "^7.1.6",
     "nodemon": "^2.0.4",
+    "pg": "^8.3.3",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.3.5",
+    "sequelize-cli": "^6.2.0",
     "swagger-jsdoc": "^4.0.0",
     "swagger-ui-express": "^4.1.4"
   },
