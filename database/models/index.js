@@ -23,15 +23,7 @@ fs
     return (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js');
   })
   .forEach(file => {
-<<<<<<< HEAD
-<<<<<<< HEAD
     const model = require(path.join(__dirname,file))(sequelize,Sequelize.DataTypes);
-=======
-    const model = sequelize['import'](path.join(__dirname,file));
->>>>>>> 9ce6332... chore(database)add postgre configuration[finidhes:#https://trello.com/c/3RYihb3M/17-configure-the-app-to-use-postgres-database]
-=======
-    const model = require(path.join(__dirname,file))(sequelize,Sequelize.DataTypes);
->>>>>>> b2f69f0... chore<sequelizing>database configuration[finishes:#/17
     db[model.name] = model;
   });
 
