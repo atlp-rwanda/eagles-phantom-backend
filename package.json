@@ -2,9 +2,8 @@
   "name": "eagles-phantom-backend",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text --all=true mocha --require @babel/polyfill --require @babel/register  src/*.js --timeout 2000000 --exit",
+    "test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text --all=true mocha --require @babel/polyfill --require @babel/register  src/test/*.js --timeout 2000000 --exit",
     "coverage": "nyc npm run test",
     "test-coveralls": "nyc npm run mocha && shx cat ./coverage/lcov.info | node ./bin/coveralls.js --verbose",
     "test:coverage": "jest --coverage",
@@ -42,6 +41,7 @@
     "nodemon": "^2.0.4",
     "pg": "^8.3.3",
     "pg-hstore": "^2.3.3",
+    "pkg": "^4.4.9",
     "sequelize": "^6.3.5",
     "sequelize-cli": "^6.2.0",
     "swagger-jsdoc": "^4.0.0",
