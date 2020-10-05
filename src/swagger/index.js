@@ -23,7 +23,7 @@ const swaggerDefinition = {
     },
 
     servers: [{
-      url: 'http://localhost:4000',
+      url: 'http://localhost:3020',
       name: `${os.hostname()}`,
     },
     {

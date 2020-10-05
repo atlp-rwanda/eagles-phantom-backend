@@ -1,5 +1,5 @@
 import express from 'express';
-import welcome from '../controllers/user.js';
+import welcome from '../controllers/user';
 // import translator from '../languages/config.js';
 import swagger from '../swagger/index.js';
 
