@@ -1,7 +1,8 @@
 {
     "env": {
         "es2021": true,
-        "node": true
+        "node": true,
+        "mocha": true
     },
     "extends": [
         "airbnb-base"
@@ -11,7 +12,5 @@
         "sourceType": "module"
     },
     "rules": {
-        "no-underscore-dangle":"off",
-        "no-undef":"off"
     }
 }

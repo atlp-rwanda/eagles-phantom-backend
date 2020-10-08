@@ -5,7 +5,9 @@ import express from 'express';
 const app = express();
 
 i18n.configure({
-  locales: ['en', 'fr', 'kiny'],
+  locales: ['en', 'fr', 'rw'],
+  header: 'accept-language',
+  autoReload: true,
   directory: path.join('./src/languages', '/locales'),
   defaultLocale: 'en',
   queryParameter: 'lang',

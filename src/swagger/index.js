@@ -4,7 +4,6 @@ import swaggerui from 'swagger-ui-express';
 import os from 'os';
 
 import pkg from 'express';
-// import { Router } from 'express';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -27,7 +26,7 @@ const swaggerDefinition = {
       name: `${os.hostname()}`,
     },
     {
-      url: `https://phantom-eagles-backend.herokuapp.com`,
+      url: 'https://phantom-eagles-backend.herokuapp.com',
       name: `${os.hostname()}`,
     },
     ],
