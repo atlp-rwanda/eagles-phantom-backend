@@ -1,4 +1,6 @@
 {
     "200":"200",
-    "Welcome to phantom!.":"bienvenue chez phantom!."
+    "Welcome to phantom!.":"bienvenue chez phantom!.",
+    "logged In successfull": "Connexion réussie",
+	"Invalid email or password": "email ou mot de passe invalide"
 }

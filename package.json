@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text --all=true mocha --require @babel/polyfill --require @babel/register  src/*.js --timeout 2000000 --exit",
+    "test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text --all=true mocha --require @babel/polyfill --require @babel/register src/test/*.js --timeout 2000000 --exit",
     "coverage": "nyc npm run test",
     "test-coveralls": "nyc npm run mocha && shx cat ./coverage/lcov.info | node ./bin/coveralls.js --verbose",
     "test:coverage": "jest --coverage",
@@ -11,10 +11,20 @@
     "migrate:reset": "npx sequelize-cli db:migrate:undo:all && npm run migrate",
     "migrate": "sequelize db:migrate",
     "seed": "sequelize db:seed:all",
+    "migrate:heroku": "npm run migrate && npm run seed",
     "clean": "rm -rf build && mkdir build",
-    "build-babel": "babel -d ./build ./src -s",
-    "build": "npm run clean && npm run build-babel",
-    "start": "npm run build && node ./build/app.js"
+    "build-src": "babel -d ./build ./src -s",
+    "build": "npm run migrate:heroku && npm run clean && npm run build-src",
+    "start": "node --require @babel/polyfill build/app.js"
+  },
+  "nyc": {
+    "exclude": [
+      "src/database/migrations",
+      "src/test",
+      "src/database/models",
+      "src/database/seeders",
+      "coverage"
+    ]
   },
   "repository": {
     "type": "git",
@@ -34,16 +44,21 @@
     "@babel/preset-env": "^7.11.5",
     "@babel/register": "^7.11.5",
     "@babel/runtime": "^7.11.2",
+    "bcrypt": "^5.0.0",
+    "bcryptjs": "^2.4.2",
     "body-parser": "^1.19.0",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "ci": "^1.0.0",
+    "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "cross-env": "^7.0.2",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "glob": "^7.1.6",
     "i18n": "^0.13.2",
+    "jest": "^26.5.2",
+    "jsonwebtoken": "^8.5.1",
     "nodemon": "^2.0.4",
     "pg": "^8.3.3",
     "pg-hstore": "^2.3.3",
@@ -55,9 +70,9 @@
   "devDependencies": {
     "coverage": "^0.4.1",
     "coveralls": "^3.1.0",
-    "eslint": "^7.9.0",
+    "eslint": "^7.10.0",
     "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-import": "^2.22.1",
     "istanbul": "^0.4.5",
     "jshint": "^2.12.0",
     "mocha": "^8.1.3",
