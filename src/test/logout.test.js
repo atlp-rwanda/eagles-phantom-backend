@@ -16,7 +16,7 @@ describe('Log out a user!', () => {
           .get('/logout')
           .end((err, res) => {
             expect(res).to.have.status(200);
-            expect(res.body.message).to.equals(object);
+            expect(res.body.message).to.equals('you are successfully logged out ');
             done();
           });
       });
