@@ -1,7 +1,7 @@
 import express from 'express';
 import welcome from '../controllers/user';
-// import translator from '../languages/config.js';
-import swagger from '../swagger/index.js';
+import login from '../controllers/controller';
+import swagger from '../swagger/index';
 
 const router = express.Router();
 
@@ -16,11 +16,43 @@ const router = express.Router();
 *       200:
 *         description:Welcome to phantom, a platform to facilitate the transportation mode in town!.
 */
+/**
+ * @swagger
+ * /v1/auth/login:
+ *   post:
+ *     tags:
+ *       - Sign In
+ *     name: login
+ *     produces:
+ *       - application/json
+ *     consumes:
+ *       - application/json
+ *     parameters:
+ *       - name: body
+ *         in: body
+ *         schema:
+ *
+ *           type: object
+ *           properties:
+ *             email:
+ *               type: string
+ *             password:
+ *               type: string
+ *               format: password
+ *         required:
+ *           - email
+ *           - password
+ *     responses:
+ *       '200':
+ *             description: Logged In successfull.
+ *       '400':
+ *             description: Invalid email or password.
+ * */
 
 router.get('/', welcome);
 
-router.use('/api-docs', swagger);
+router.post('/v1/auth/login', login);
 
-// router.get('/?lang=fr', translator);
+router.use('/api-docs', swagger);
 
 export default router;
