@@ -1,4 +1,7 @@
 {
     "200":"200",
-	"Welcome to phantom!.": "ikaze kuri fantom!."
+    "Welcome to phantom!.": "ikaze kuri fantom!.",
+    "logged In successfull": "Connexion réussie",
+	"wrong email or password": "mauvais email ou mot de passe",
+	"Invalid email or password": "Imeri cyangwa ijambo ryibanga bitemewe"
 }
