@@ -1,13 +1,9 @@
 import express from 'express';
 import welcome from '../controllers/user';
-<<<<<<< HEAD
-// import translator from '../languages/config.js';
-=======
 import login from '../controllers/controller';
 import logout from '../controllers/logout';
 import getInfo from '../controllers/info';
 import auth from '../Middlewares/auth';
->>>>>>> 14f988b... ft(logout):log-out-users-#qgAq5WKe
 import swagger from '../swagger/index';
 
 const router = express.Router();
