@@ -2,7 +2,7 @@
 /node_modules
 /.nyc_output
 /coverage
-node_modules
+
 .env
 # Created by https://www.gitignore.io/api/node
 # Edit at https://www.gitignore.io/?templates=node
