@@ -25,8 +25,8 @@
       "src/database/config",
       "config.js ",
       "heroku",
-      "src/middlewares/auth",
-      "src/Middlewares/auth",
+      "src/middlewares/auth.js",
+      "src/Middlewares/auth.js",
       "src/swagger"
     ]
   },

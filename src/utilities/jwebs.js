@@ -6,8 +6,8 @@ export const userloginToken = (params) =>{
         expiresIn:'120d'})
     return token
 }
-//decoding token
+
 export const decode = (token) =>{
   const payload = jwt.verify(token,process.env.ACCESS_TOKEN_SECRET)
     return payload
-}
+}  
