@@ -2,9 +2,9 @@ const user = [
   {
     firstname: 'Allybabalao',
     lastname: 'babayaga',
-    email: 'el.ally741@gmail.com',
-    dateofbirth: '$2xcz9p/tq3AQQYs8EJ6',
-    gender: '$oAxcz9p/AQQYs8EJ6',
+    email: 'el.ally741jki@gmail.com',
+    dateofbirth: '$2xc3AQQYs8EJ6',
+    gender: '$oQQYs8EJ6',
     address: '$q3AQQYs8EJ6',
   },
   {
@@ -24,6 +24,14 @@ const user = [
     gender: 'Male',
     address: 'Kanombe',
     role: 'admin',
+  },
+  {
+    email: 'Josh@gmail.com',
+    role: 'admin',
+  },
+  {
+    email: 'Maestro@gmail.com',
+    role: 'user',
   },
 ];
 export default user;

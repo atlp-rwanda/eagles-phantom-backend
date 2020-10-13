@@ -1,14 +1,19 @@
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
+import dotenv from 'dotenv';
 import app from '../app';
 import user from './mock/data';
+import { encode } from '../utils/jwt';
+
+dotenv.config();
 
 chai.use(chaiHttp);
 const requester = () => chai.request(app);
 const prefix = '/api/v1/auth/register';
-const adminToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpvc2hAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjAyNzY0NDkwLCJleHAiOjE2MDMzNjkyOTB9.Jctf3hUMNigF19-ShwOg6_4p1gAwgD97E7PUHwdtNdI';
-const fakeToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpvc2hAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjAyNzY0NDkwLCJleHAiOjE2MDMzNjkyOTB9.Jctf3hUMNigF19-ShwOg6_4p1gAwgD97E7PUHwdtNd';
-const nonAdminToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVsLmFsbHk3NDFxZ2dnamdmcnRAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2MDI2OTU5NjV9.w5xX9cDgjPcOKJ7IOp7srqVyXEHJDL5ll_IUS72BhPc';
+
+const adminToken = encode(user[3]);
+const fakeToken = `${adminToken}abc`;
+const nonAdminToken = encode(user[4]);
 
 describe('Tests for the registration of the users', () => {
   it('Should not be possible to do any task with no token', (done) => {
@@ -58,7 +63,6 @@ describe('Tests for the registration of the users', () => {
       .set('x-access-token', adminToken)
       .send(user[0])
       .end((error, res) => {
-        console.log(`error ${res.body.message}`);
         expect(res).to.have.status([400]);
         expect(res.body).to.have.property('status');
         expect(res.body.status).to.be.equal(400);
