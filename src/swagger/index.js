@@ -31,14 +31,12 @@ const swaggerDefinition = {
     },
     ],
   },
-  apis: ['./src/routers/*.js'],
+  apis: ['./src/routers/routers.js'],
 };
 
 const swaggerDocument = swaggerJSDoc(swaggerDefinition);
 
 router.use('/', swaggerui.serve, swaggerui.setup(swaggerDocument));
-
-
 
 export default router;
 
