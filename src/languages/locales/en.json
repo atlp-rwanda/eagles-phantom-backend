@@ -4,5 +4,7 @@
 	"logged In successfull": "logged In successfull",
 	"Invalid email or password": "Invalid email or password",
 	"Welcome to phantom, a platform to facilitate the transportation mode in town!.": "Welcome to phantom, a platform to facilitate the transportation mode in town!.",
-	"The user with this email ": "The user with this email "
+	"The user with this email ": "The user with this email ",
+	"User with that email is not found": "User with that email is not found",
+	"Please sign as the admin": "Please sign as the admin"
 }

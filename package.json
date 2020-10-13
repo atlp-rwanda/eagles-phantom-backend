@@ -4,7 +4,6 @@
   "main": "app.js",
   "scripts": {
     "test": "npm run migrate:reset && npm run seed && cross-env NODE_ENV=test npm run migrate:reset && npm run seed:test && nyc --reporter=html --reporter=text --all=true mocha --require @babel/polyfill --require @babel/register src/test/*.js --timeout 5000000 --exit",
-    "coverage": "nyc npm run test",
     "test-coveralls": "nyc npm run mocha && shx cat ./coverage/lcov.info | node ./bin/coveralls.js --verbose",
     "test:coverage": "jest --coverage",
     "dev": "cross-env NODE_ENV=development nodemon --exec babel-node  ./src/app.js",
@@ -16,7 +15,8 @@
     "clean": "rm -rf build && mkdir build",
     "build-src": "babel -d ./build ./src -s",
     "build": "npm run migrate:heroku && npm run clean && npm run build-src",
-    "start": "node --require @babel/polyfill build/app.js"
+    "start": "node --require @babel/polyfill build/app.js",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
