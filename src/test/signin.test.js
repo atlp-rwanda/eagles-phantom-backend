@@ -63,11 +63,11 @@ describe('Sign in route', () => {
         password: 'admin',
       })
       .end((err, res) => {
-        expect(res).to.have.status(200);
+        expect(res).to.have.status(404);
         expect(res).to.have.property('status');
-        expect(res.body).to.have.status([200]);
+        expect(res.body).to.have.status([404]);
         expect(res.body).to.have.property('status');
-        expect(res.body.status).to.be.equal(200);
+        expect(res.body.status).to.be.equal(404);
         expect(res.body).to.have.property('message');
         expect(res.body.message).to.be.a('string');
         done();
@@ -82,11 +82,30 @@ describe('Sign in route', () => {
         password: 'admin2',
       })
       .end((err, res) => {
-        expect(res).to.have.status(400);
+        expect(res).to.have.status(404);
         expect(res).to.have.property('status');
-        expect(res.body).to.have.status([400]);
+        expect(res.body).to.have.status([404]);
         expect(res.body).to.have.property('status');
-        expect(res.body.status).to.be.equal(400);
+        expect(res.body.status).to.be.equal(404);
+        expect(res.body).to.have.property('message');
+        expect(res.body.message).to.be.a('string');
+        done();
+      });
+  });
+  it('checkUser password is invalid', (done) => {
+    chai
+      .request(app)
+      .post('/api/v1/auth/login')
+      .send({
+        email: 'Josh@gmail.com',
+        password: 'admin2',
+      })
+      .end((err, res) => {
+        expect(res).to.have.status(404);
+        expect(res).to.have.property('status');
+        expect(res.body).to.have.status([404]);
+        expect(res.body).to.have.property('status');
+        expect(res.body.status).to.be.equal(404);
         expect(res.body).to.have.property('message');
         expect(res.body.message).to.be.a('string');
         done();
@@ -107,4 +126,4 @@ describe('Sign in route', () => {
           done();
           });
       });
-});
+})

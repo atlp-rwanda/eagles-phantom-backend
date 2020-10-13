@@ -13,12 +13,13 @@ module.exports = (sequelize, DataTypes) => {
 
   Routes.init({
     routeID: DataTypes.STRING,
-    direction: DataTypes.STRING,
-    from: DataTypes.STRING,
-    to: DataTypes.STRING,
-  }, {
-    sequelize,
-    modelName: 'Routes',
-  });
-  return Routes;
+    origin: DataTypes.STRING,
+    price:DataTypes.STRING,
+    destination: DataTypes.STRING,
+  },
+{
+  sequelize,
+  modelName: 'Routes',
+});
+return Routes;
 };

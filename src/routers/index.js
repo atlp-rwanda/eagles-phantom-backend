@@ -6,6 +6,9 @@ import welcomeRoute from './welcome.route';
 import userRoute from './auth.routes';
 import busRoute from './bus.routers';
 import assignmentRoutes from './AssignmentBusesRoutes';
+import routes from './routes';
+
+
 
 
 
@@ -19,6 +22,8 @@ router.use('/api/v1/users',userRoute);
 
 router.use('/api/v1/', busRoute);
 router.use('/api/v1', assignmentRoutes);
+
+router.use('/api/v1/routes',routes);
 
 router.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDoc));
 
