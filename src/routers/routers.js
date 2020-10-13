@@ -3,7 +3,7 @@ import welcome from '../controllers/user';
 import login from '../controllers/controller';
 import logout from '../controllers/logout';
 import getInfo from '../controllers/info';
-import auth from '../Middlewares/auth';
+import auth from '../middlewares/auth';
 import swagger from '../swagger/index';
 
 const router = express.Router();

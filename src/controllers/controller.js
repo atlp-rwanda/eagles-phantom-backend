@@ -20,10 +20,8 @@ const login = async (req, res) => {
       });
     }
   } catch (error) {
-    // error;
   }
   const payload = { email };
- 
   const accessToken = jwt.sign(payload, token, {
     algorithm: 'HS256',
     expiresIn: '120h',
@@ -34,6 +32,4 @@ const login = async (req, res) => {
     token: accessToken,
   });
 };
-
-
 export default login;

@@ -7,7 +7,7 @@ const auth = (req, res, next) => {
   if (!token) {
     return res.status(401).json({
       status: 401,
-      error: 'you are not logged in',
+      error:'you are not logged in',
       message:'Please! sign in first'
     });
   }
