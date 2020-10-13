@@ -65,7 +65,6 @@ class register {
       return res.status(500).json({ status: 500, message: error.message });
     }
   }
-
   static async login(req, res) {
     const { email, password } = req.body;
     try {
@@ -125,6 +124,25 @@ class register {
       return res.status(500).send(error.message);
     }
   }
+  static async getallusers(req, res) {
+    const users = await Users.findAll({
+      where: {
+        [Op.or]: [
+          { role: 'driver' },
+          { role: 'operator' },
+        ],
+      },
+      attributes: {
+        exclude: ['password'],
+      },
+    });
+    return res.status(200).json({
+      status: 'success',
+      data: {
+        users,
+      },
+    });
+  }
   static async forgot(req, res) {
     try {
       const { email } = req.body;
@@ -159,7 +177,6 @@ class register {
       return res.status(500).json({ status: 500, message: error.message });
     }
   }
-
   static async resetPassword(req, res) {
     try{
       const { newpassword } = req.body;
@@ -176,13 +193,14 @@ class register {
       );
       const user = await Users.findOne({
         where: { resetlink: req.params.resetToken },
-      });
-      if (!user) {
-        return res.status(404).json({
-          status: 404,
-          message: res.__('this user doesn`t exist in the system'),
-        });
       }
+      );
+    if (!user) {
+      return res.status(403).json({
+        status: 403,
+        message: res.__('this user doesn`t exist in the system'),
+      });
+    }
       if (newpassword !== confirmation) {
         return res.status(400).json({
           status: 400,
@@ -201,7 +219,7 @@ class register {
    catch(err){
      
        }
-  }
   
+}
 }
 export default register;

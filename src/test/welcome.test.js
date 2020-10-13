@@ -22,7 +22,7 @@ describe('Server!', () => {
         done();
       });
   });
-  
+});
   describe('/all unspecified routes', () => {
     it('it should give error to unspecified routes', (done) => {
       chai.request(app)
@@ -33,4 +33,3 @@ describe('Server!', () => {
         });
     });
   });
-});

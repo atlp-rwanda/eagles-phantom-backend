@@ -11,8 +11,8 @@ chai.use(chaiHttp);
 const requester = () => chai.request(app);
 const prefix1 = `/api/v1/assignment/${200}`;
 const prefix2 = `/api/v1/assignment/${1}`;
-const fakeToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpvc2hAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjAyNzY0NDkwLCJleHAiOjE2MDMzNjkyOTB9.Jctf3hUMNigF19-ShwOg6_4p1gAwgD97E7PUHwdtNd';
 const operatorToken = encode(user[12]);
+const fakeToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpvc2hAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjAyNzY0NDkwLCJleHAiOjE2MDMzNjkyOTB9.Jctf3hUMNigF19-ShwOg6_4p1gAwgD97E7PUHwdtNd';
 const expiredToken='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpvc2hAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjAyNzY0NDkwLCJleHAiOjE2MDMzNjkyOTB9.Jctf3hUMNigF19-ShwOg6_4p1gAwgD97E7PUHwdtNd';
 
 describe('Tests for the assignment of buses to routes and getting the assigned buses', () => {
@@ -76,6 +76,8 @@ describe('Tests for the assignment of buses to routes and getting the assigned b
       .send(user[16])
       .end((error, res) => {
         expect(res).to.have.status([401]);
+        expect(res.body).to.have.property('status');
+        expect(res.body.status).to.be.equal(401);
         expect(res.body).to.have.property('status');
         expect(res.body.status).to.be.equal(401);
         expect(res.body).to.have.property('message');
