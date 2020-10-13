@@ -87,3 +87,6 @@ coverage
 .nyc_output
 
 .vscode/
+# End of https://www.gitignore.io/api/node
+
+
