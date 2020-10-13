@@ -3,13 +3,15 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import swaggerUI from 'swagger-ui-express';
+import cookieParse from 'cookie-parser';
 import i18n from 'i18n';
 import routes from './routers/routers';
 
 dotenv.config();
 
 const app = express();
-
+app.use(cookieParse());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(i18n.init);
 
 app.use(express.json());

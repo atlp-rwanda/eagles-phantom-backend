@@ -1,6 +1,8 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import model from '../database/models';
+import dotenv from 'dotenv'
+dotenv.config();
 
 const login = async (req, res) => {
   const { email, password } = req.body;
@@ -21,13 +23,17 @@ const login = async (req, res) => {
     // error;
   }
   const payload = { email };
+ 
   const accessToken = jwt.sign(payload, token, {
     algorithm: 'HS256',
-    expiresIn: 120,
+    expiresIn: '120h',
   });
+  res.cookie('auths',accessToken);
   return res.status(200).json({
     message: res.__('logged In successfull'),
     token: accessToken,
   });
 };
+
+
 export default login;

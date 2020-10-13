@@ -1,6 +1,9 @@
 import express from 'express';
 import welcome from '../controllers/user';
 import login from '../controllers/controller';
+import logout from '../controllers/logout';
+import getInfo from '../controllers/info';
+import auth from '../Middlewares/auth';
 import swagger from '../swagger/index';
 
 const router = express.Router();
@@ -50,6 +53,8 @@ const router = express.Router();
  * */
 
 router.get('/', welcome);
+router.get("/logout",auth.auth,logout);
+router.get("/drivers/info",auth.auth,getInfo);
 
 router.post('/v1/auth/login', login);
 
