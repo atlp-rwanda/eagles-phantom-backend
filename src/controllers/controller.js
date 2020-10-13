@@ -4,11 +4,9 @@ import model from '../database/models';
 import dotenv from 'dotenv'
 dotenv.config();
 
-const login = async (req, res) => {
-  const { email, password } = req.body;
+const login = async (req, res) => { const { email, password } = req.body;
   if (!email || !password) {
-    return res.status(401).send({ message: res.__('Invalid email or password') });
-  }
+    return res.status(401).send({ message: res.__('Invalid email or password') });}
   const token = process.env.ACCESS_TOKEN_SECRET || 'jhbsdfjbio';
   try {
     const user = await model.User.findOne({
