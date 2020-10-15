@@ -8,6 +8,7 @@ import swagger from '../swagger/index';
 
 const router = express.Router();
 
+router.get('/', welcome);
 /**
  * @swagger
 * /:
@@ -19,6 +20,8 @@ const router = express.Router();
 *       200:
 *         description:Welcome to phantom, a platform to facilitate the transportation mode in town!.
 */
+
+router.post('/v1/auth/login', login);
 /**
  * @swagger
  * /v1/auth/login:
@@ -51,12 +54,49 @@ const router = express.Router();
  *       '400':
  *             description: Invalid email or password.
  * */
-
-router.get('/', welcome);
 router.get("/logout",auth.auth,logout);
+
+/**
+ * @swagger
+ * /logout:
+ *   get:
+ *     tags:
+ *       - Log-out
+ *     name: logout
+ *     summary: Log out auth-user
+ *     produces:
+ *       - application/json
+ *     consumes:
+ *       - application/json
+ *     responses:
+ *       '200':
+ *             description: User is successfully logged out
+ * */
+
+
 router.get("/drivers/info",auth.auth,getInfo);
 
-router.post('/v1/auth/login', login);
+/**
+ * @swagger
+ * /drivers/info:
+ *   get:
+ *     tags:
+ *       - Driver-info
+ *     name: drivers
+ *     summary: info on driver
+ *     produces:
+ *       - application/json
+ *     consumes:
+ *       - application/json
+ *     responses:
+ *       '200':
+ *             description: info is available for you
+ * */
+
+//router.post('/v1/auth/login', login);
+
+
+
 
 router.use('/api-docs', swagger);
 
