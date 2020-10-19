@@ -7,4 +7,6 @@ const secret = process.env.SECRET_KEY || 'jjjjjjjjjjjj';
 
 export const decode = (token) => jwt.verify(token, secret);
 
-export const encode = (payload) => jwt.sign(payload, secret, { expiresIn: '7d' });
+export const encode = (payload) => jwt.sign({ payload }, secret, { expiresIn: '2d' });
+
+export const encodeExpire = (payload) => jwt.sign({ payload }, secret, { expiresIn: '0.0001s' });

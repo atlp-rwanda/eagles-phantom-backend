@@ -10,9 +10,9 @@ dotenv.config();
 chai.use(chaiHttp);
 const requester = () => chai.request(app);
 const prefix = '/api/v1/auth/register';
-const adminToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpvc2hAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjA0NTg0NDE3LCJleHAiOjE2MDUxODkyMTd9.IOb2CqZW13RlQnWnjWV5SSrzyHbv_y2_zmcc1wYYEEo';
-const fakeToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Ikpvc2hAZ21haWwuY29tIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjA0NTg0NDE3LCJleHAiOjE2MDUxODkyMTd9.IOb2CqZW13RlQnWnjWV5SSrzyHbv_y2_zmcc1wYYEE';
-const nonAdminToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im11Z2VtYWxlb0BnbWFpbC5jb20iLCJyb2xlIjoiZHJpdmVyIiwiaWF0IjoxNjA0NTg0NzU0LCJleHAiOjE2MDUxODk1NTR9.5Xb4IE8Zn7Krb97--W7V1wda-rmLifTk8GaamsaQ5oc';
+const adminToken = encode(user[5]);
+const fakeToken = `${adminToken}abc`;
+const nonAdminToken = encode(user[6]);
 
 describe('Tests for the registration of the users', () => {
   it('Should not be possible to do any task with no token', (done) => {
