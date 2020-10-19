@@ -1,8 +1,19 @@
-import dotenv from 'dotenv';
-
-dotenv.config();
-export default (sequelize, DataTypes) => {
-  const Users = sequelize.define('Users', {
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class Users extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+    }
+  };
+  Users.init({
     firstname: DataTypes.STRING,
     lastname: DataTypes.STRING,
     email: DataTypes.STRING,
@@ -11,8 +22,10 @@ export default (sequelize, DataTypes) => {
     gender: DataTypes.STRING,
     address: DataTypes.STRING,
     role: DataTypes.STRING,
-  }, {});
-  Users.associate = (models) => {
-  };
+    resetlink: DataTypes.STRING(2000),
+  }, {
+    sequelize,
+    modelName: 'Users',
+  });
   return Users;
 };

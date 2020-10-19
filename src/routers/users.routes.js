@@ -3,7 +3,10 @@ import userController from '../controllers/userController';
 import checkUser from '../middleware/checkUser';
 import { validationError } from '../validations/signup';
 import { validation } from '../validations/updateProfile';
+import { validationErrorForgotten } from '../validations/validationErrorForgotten';
+import { validationErrorReset } from '../validations/validationErrorReset';
 import isAdmin from '../middleware/isAdmin';
+import isDriverOrOperator from '../middleware/isDriverOrOperator';
 
 const router = express.Router();
 
@@ -93,6 +96,71 @@ router.post('/register', checkUser, isAdmin, validationError, userController.sig
 
 /**
 * @swagger
+* /api/v1/auth/forgotten-link:
+*   post:
+*     tags:
+*       - Users
+*     name: Forgot
+*     summary: The link to reset the password
+*     produces:
+*       - application/json
+*     consumes:
+*       - application/json
+*     requestBody:
+*       content:
+*         application/json:
+*           schema:
+*             type: object
+*             properties:
+*               email:
+*                 type: string
+*     responses:
+*       '201':
+*             description: the link has been sent successfully to the provided email.
+*       '400':
+*             description: Bad request.
+* */
+
+router.post('/forgotten-link', isDriverOrOperator, validationErrorForgotten, userController.forgot);
+
+/**
+* @swagger
+* /api/v1/auth/reset-password/{resetToken}:
+*   put:
+*     tags:
+*       - User
+*     name: reset password
+*     summary: reset user password
+*     produces:
+*       - application/json
+*     consumes:
+*       - application/json
+*     parameters:
+*       - name: resetToken
+*         in: path
+*         description: the address of resetting the password
+*     requestBody:
+*       content:
+*         application/json:
+*           schema:
+*             type: object
+*             properties:
+*               newpassword:
+*                 type: string
+*                 example: 'put here your new password'
+*               confirmation:
+*                 type: string
+*                 example: 'confirm here your new password'
+*     responses:
+*       '200':
+*             description: password reset successfully.
+*       '400':
+*             description: newpassword is required.
+* */
+
+router.put('/reset-password/:resetToken', validationErrorReset, userController.resetPassword);
+/**
+* @swagger
 * /api/v1/auth/updateProfile:
 *   patch:
 *     tags:
@@ -132,10 +200,7 @@ router.post('/register', checkUser, isAdmin, validationError, userController.sig
 *             description: Bad request.
 * */
 
-
-router.patch('/updateprofile', checkUser,validation,userController.updateProfile);
-
-
+router.patch('/updateprofile', checkUser, validation, userController.updateProfile);
 
 /**
 * @swagger

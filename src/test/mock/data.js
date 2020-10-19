@@ -26,12 +26,35 @@ const user = [
     role: 'admin',
   },
   {
+    email: 'el.ally741@gmail.com',
+  },
+  {
+    newpassword: 'string123',
+    confirmation: 'string123',
+  },
+  {
     email: 'Josh@gmail.com',
     role: 'admin',
   },
   {
     email: 'Maestro@gmail.com',
     role: 'user',
+  },
+  {
+    email: 'el.ally741dereva@gmail.com',
+  },
+  {
+    email: 'el.ally741operator@gmail.com',
+  },
+  {
+    email: 'Josh@gmail.com',
+  },
+  {
+    email: 'Rambo@gmail.com',
+  },
+  {
+    email: 'el.ally741operator@gmail.com',
+    role: 'operator',
   },
 ];
 export default user;

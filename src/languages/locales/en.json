@@ -5,7 +5,20 @@
 	"Invalid email or password": "Invalid email or password",
 	"Welcome to phantom, a platform to facilitate the transportation mode in town!.": "Welcome to phantom, a platform to facilitate the transportation mode in town!.",
 	"The user with this email ": "The user with this email ",
+	"Invalid token": "Invalid token",
 	"User with that email is not found": "User with that email is not found",
 	"Please sign as the admin": "Please sign as the admin",
-	"You have to use a registered email in order to update your profile": "You have to use a registered email in order to update your profile"
+	"You have to use a registered email in order to update your profile": "You have to use a registered email in order to update your profile",
+	"user created successfully": "user created successfully",
+	"The email is already in the system": "The email is already in the system",
+	"the link has been sent successfully to the provided email": "the link has been sent successfully to the provided email",
+	"Please login": "Please login",
+	"Invalid or expired Token": "Invalid or expired Token",
+	"Password changed Successfully": "Password changed Successfully",
+	"this user doesn`t exist in the system": "this user doesn`t exist in the system",
+	"The user with this email does not exist": "The user with this email does not exist",
+	"Please sign as the driver or operator": "Please sign as the driver or operator",
+	"Your role is not a driver or operator": "Your role is not a driver or operator",
+	"The email and it confirmation are not the same": "The email and it confirmation are not the same",
+	"The password and its confirmation are not the same": "The password and its confirmation are not the same"
 }
