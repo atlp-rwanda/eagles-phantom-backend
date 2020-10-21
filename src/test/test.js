@@ -12,7 +12,7 @@ describe('Server!', () => {
       .get('/')
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body.message).to.equals('Welcome to phantom!.');
+        expect(res.body.message).to.equals('Welcome to phantom, a platform to facilitate the transportation mode in town!.');
         done();
       });
   });

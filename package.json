@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "test": "cross-env NODE_ENV=test nyc --reporter=html --reporter=text --all=true mocha --require @babel/polyfill --require @babel/register  src/test/*.js --timeout 2000000 --exit",
+    "test": "npm run migrate:reset && npm run seed && cross-env NODE_ENV=test npm run migrate:reset && npm run seed:test && nyc --reporter=html --reporter=text --all=true mocha --require @babel/polyfill --require @babel/register src/test/*.js --timeout 5000000 --exit",
     "coverage": "nyc npm run test",
     "test-coveralls": "nyc npm run mocha && shx cat ./coverage/lcov.info | node ./bin/coveralls.js --verbose",
     "test:coverage": "jest --coverage",
@@ -11,20 +11,12 @@
     "migrate:reset": "npx sequelize-cli db:migrate:undo:all && npm run migrate",
     "migrate": "sequelize db:migrate",
     "seed": "sequelize db:seed:all",
-    "migrate:heroku": "npm run migrate && npm run seed",
+    "seed:test": "cross-env NODE_ENV=test sequelize db:seed:all",
+    "migrate:heroku": "npm run migrate:reset && npm run seed",
     "clean": "rm -rf build && mkdir build",
     "build-src": "babel -d ./build ./src -s",
     "build": "npm run migrate:heroku && npm run clean && npm run build-src",
     "start": "node --require @babel/polyfill build/app.js"
-  },
-  "nyc": {
-    "exclude": [
-      "src/database/migrations",
-      "src/test",
-      "src/database/models",
-      "src/database/seeders",
-      "coverage"
-    ]
   },
   "repository": {
     "type": "git",
@@ -44,6 +36,8 @@
     "@babel/preset-env": "^7.11.5",
     "@babel/register": "^7.11.5",
     "@babel/runtime": "^7.11.2",
+    "@hapi/joi": "^17.1.1",
+    "@sendgrid/mail": "^7.2.6",
     "bcrypt": "^5.0.0",
     "bcryptjs": "^2.4.2",
     "body-parser": "^1.19.0",
@@ -60,15 +54,16 @@
     "jest": "^26.5.2",
     "jsonwebtoken": "^8.5.1",
     "nodemon": "^2.0.4",
-    "pg": "^8.3.3",
+    "pg": "^8.4.0",
     "pg-hstore": "^2.3.3",
-    "pkg": "^4.4.9",
-    "sequelize": "^6.3.5",
+    "sequelize": "^5.21.3",
     "sequelize-cli": "^6.2.0",
     "swagger-jsdoc": "^4.0.0",
-    "swagger-ui-express": "^4.1.4"
+    "swagger-ui-express": "^4.1.4",
+    "uuid": "^8.3.1"
   },
   "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.12.1",
     "coverage": "^0.4.1",
     "coveralls": "^3.1.0",
     "eslint": "^7.10.0",
