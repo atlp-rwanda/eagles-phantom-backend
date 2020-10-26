@@ -22,7 +22,7 @@ class register {
         address,
         role,
       } = req.body;
-      const id = uuidv4();
+     const id = uuidv4();
       const inSystem = await Users.findOne({
         where: { email: req.body.email },
       });
@@ -95,5 +95,46 @@ class register {
       });
     }
   }
+
+//updating driver or operator profile
+
+static async updateProfile (req, res){
+  try {
+    
+    const userId = req.params.id;
+    
+    const [ updated ] = await Users.update(req.body, {
+      
+      where: { id: userId }
+    });
+    
+    if (updated) {
+      const updatedUser = await Users.findOne({ where: { id: userId } });
+      return res.status(200).json({ user: updatedUser })
+    }
+    throw new Error('User does not exist');
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+  
 }
+
+//---getall
+static async getallusers(req,res){
+
+    const users = await Users.findAll();
+  res.status(200).json({
+    status:'success',
+    data:{
+      users
+    }
+  })
+  
+  
+}
+
+
+
+}
+
 export default register;
