@@ -2,10 +2,9 @@ import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import dotenv from 'dotenv';
 import { describe, it } from 'mocha';
-import token from './mock/userMocks'
+import token from './mock/userMock'
 import data from './mock/updateData';
 import app from '../app';
-import user from './mock/data';
 dotenv.config();
 chai.use(chaiHttp);
 const prefix = '/api/v1/auth/updateProfile';

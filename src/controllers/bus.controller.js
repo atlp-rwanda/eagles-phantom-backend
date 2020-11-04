@@ -26,14 +26,14 @@ function assign() {
           include: [{
             model: Users,
             as: 'driver',
-            attributes: ['id', 'firstname', 'email'],
+            attributes: ['id','firstname', 'email'],
           }],
         });
         const assignmentDriver = {
           to: email,
           from: 'mugema8@gmail.com',
           subject: 'Phantom assignment',
-          text: `Dear ${user.dataValues.firstname}, you were assigned to drive bus with Plate No: ${bus.busPlate}`,
+          text: `Dear ${user.dataValues.firstname}, you were assigned to drive bus with Plate No:${bus.busPlate}`,
           html: `Dear ${user.dataValues.firstname}, you were assigned to drive bus with Plate No: ${bus.busPlate}`,
         };
         mail.send(assignmentDriver);
@@ -284,3 +284,4 @@ module.exports = {
   getAssignedBuses,
   viewListOfBuses,
 };
+

@@ -6,7 +6,6 @@ import user from './mock/data';
 import { encode } from '../utils/jwt';
 
 dotenv.config();
-
 chai.use(chaiHttp);
 const requester = () => chai.request(app);
 const prefix1 = `/api/v1/assignment/${200}`;

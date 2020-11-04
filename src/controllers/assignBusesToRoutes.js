@@ -23,7 +23,7 @@ class assign {
           include: [{
             model: Routes,
             as: 'route',
-            attributes: ['id', 'direction', 'routeID'],
+            attributes: ['id', 'origin','destination','price','routeID'],
           }],
         });
         return AssignBusesToRoutesResponses(res, 200, 'the bus was assigned successfully', assignedBus);
@@ -46,7 +46,7 @@ class assign {
         include: [{
           model: Routes,
           as: 'route',
-          attributes: ['id', 'direction', 'routeID'],
+          attributes: ['id', 'origin','destination','price','routeID'],
         }],
       });
       const pagination = paginate(page, count, rows, limit);

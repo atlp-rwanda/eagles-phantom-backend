@@ -1,5 +1,4 @@
 import { Router } from 'express';
-// import controllers from '../controllers/busController';
 import controllers from '../controllers/bus.controller';
 import { validateBusInfo, validateBusUpdate } from '../middleware/bus.validation';
 import swagger from '../swagger/index';
@@ -56,7 +55,7 @@ const router = Router();
  *             description: Bus already exists in the system.
  * */
 
-router.post('/buses', checkUser, isAdmin, [validateBusInfo], controllers.createBus);
+router.post('/', checkUser, isAdmin, [validateBusInfo], controllers.createBus);
 /**
  * @swagger
  * /api/v1/buses?page={page}&limit={limit}:
@@ -92,7 +91,8 @@ router.post('/buses', checkUser, isAdmin, [validateBusInfo], controllers.createB
  *       '400':
  *             description: The bus you're trying to reach doesn't exist.
  */
-router.get('/buses', checkUser, controllers.getAllBuses);
+router.get('/', checkUser, isAdmin, controllers.getAllBuses);
+
 /**
  * @swagger
  * /api/v1/buses/{id}:
@@ -105,22 +105,22 @@ router.get('/buses', checkUser, controllers.getAllBuses);
  *     consumes:
  *       - application/json
  *     parameters:
+ *       - name: x-access-token
+ *         in: header
+ *         description: jwt token of the user
  *       - name: id
  *         in: path
  *         schema:
  *           type: integer
  *         required: true
  *         description: id of the bus
- *       - name: x-access-token
- *         in: header
- *         description: jwt token of the user
  *     responses:
  *       '200':
- *             description: Bus retrieved successufully.
+ *             description: Bus info retrieved successufully.
  *       '403':
  *             description: There's no bus registered in the system.
  * */
-router.get('/buses/:id', checkUser, isAdmin, controllers.getBusById);
+router.get('/:id',checkUser,isAdmin, controllers.getBusById);
 /**
  * @swagger
  * /api/v1/buses/{id}:
@@ -169,7 +169,7 @@ router.get('/buses/:id', checkUser, isAdmin, controllers.getBusById);
  *             description: Bus already exists in the system.
  * */
 
-router.patch('/buses/:id', checkUser, isAdmin, [validateBusUpdate], controllers.updateBus);
+router.patch('/:id', checkUser, isAdmin, [validateBusUpdate], controllers.updateBus);
 /**
  * @swagger
  * /api/v1/buses/{id}:
@@ -195,7 +195,7 @@ router.patch('/buses/:id', checkUser, isAdmin, [validateBusUpdate], controllers.
  *       '403':
  *             description: The bus you're trying to delete doesn't exist in the system.
  * */
-router.delete('/buses/:id', checkUser, isAdmin, controllers.deleteBus);
+router.delete('/:id', checkUser, isAdmin, controllers.deleteBus);
 
 /**
  * @swagger
@@ -285,6 +285,7 @@ router.patch(
   checkExist.checkAssignment,
   controllers.unassignDriver,
 );
+
 
 /**
  * @swagger

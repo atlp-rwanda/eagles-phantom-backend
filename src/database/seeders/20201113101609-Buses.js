@@ -59,6 +59,7 @@ module.exports = {
         type: 'coaster',
         busSeats: 10,
         routeId: 5,
+        userId:1,
         createdAt: new Date(),
         updatedAt: new Date(),
       },

@@ -23,13 +23,3 @@ describe('Server!', () => {
       });
   });
 });
-  describe('/all unspecified routes', () => {
-    it('it should give error to unspecified routes', (done) => {
-      chai.request(app)
-        .get('/hutd4gg')
-        .end((err, res) => {
-          expect(res.statusCode).to.equal(404);
-          done();
-        });
-    });
-  });

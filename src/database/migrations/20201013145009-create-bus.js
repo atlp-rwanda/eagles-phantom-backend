@@ -7,6 +7,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      category: {
+        type: Sequelize.STRING
+      },
       driver: {
         type: Sequelize.STRING,
       },
@@ -29,6 +32,12 @@ module.exports = {
         type: Sequelize.STRING,
       },
       routeId: {
+        type: Sequelize.INTEGER,
+      },
+      availableSeats:{
+        type: Sequelize.INTEGER,
+      },
+      commuters: {
         type: Sequelize.INTEGER,
       },
       userId: {
