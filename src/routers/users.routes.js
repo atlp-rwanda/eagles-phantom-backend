@@ -3,6 +3,7 @@ import userController from '../controllers/registcontroller';
 import checkUser from '../middleware/checkUser';
 // import middlelogout from '../middleware/logoutChecker';
 import { validationError } from '../validations/signup';
+import { validateSignin } from '../validations/signin';
 import { validation } from '../validations/updateProfile';
 import { validationErrorForgotten } from '../validations/validationErrorForgotten';
 import { validationErrorReset } from '../validations/validationErrorReset';
@@ -46,7 +47,7 @@ const router = express.Router();
  *         description: login successfully
  */
 
-router.post('/login', userController.login);
+router.post('/login', validateSignin, userController.login);
 
 /**
 * @swagger

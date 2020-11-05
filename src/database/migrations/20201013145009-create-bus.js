@@ -31,6 +31,9 @@ module.exports = {
       routeId: {
         type: Sequelize.INTEGER,
       },
+      userId: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
