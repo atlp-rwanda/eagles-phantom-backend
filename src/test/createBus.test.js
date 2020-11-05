@@ -8,7 +8,7 @@ import { encode } from '../utils/jwt';
 chai.use(chaiHttp);
 const adminToken = encode(user[3]);
 const nonAdminToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJydWNlQGdtYWlsLmNvbSIsInJvbGUiOiJkcml2ZXIiLCJpYXQiOjE2MDMzNzcyNzAsImV4cCI6MTYwMzk4MjA3MH0.UCLiQvmKRhD8_iamHOnjMLgVtxs9Z1e1ixVgc0cVVUA';
-
+// const adminToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImVtYWlsIjoiSm9zaEBnbWFpbC5jb20iLCJyb2xlIjoiYWRtaW4ifSwiaWF0IjoxNjA5NzUyODQ5LCJleHAiOjE2MDk5MjU2NDl9.LQQ29TDis-0UduGZHqSjb-wKSpegwDtBj8c-htzdMdo'
 describe(' create Buses', () => {
     it('create bus', (done) => {
         chai
