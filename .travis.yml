@@ -1,10 +1,9 @@
 services:
   - postgresql
 before_script:
-  - psql -c 'CREATE DATABASE test;' -U postgres
   - psql -c 'CREATE DATABASE users;' -U postgres
   - psql -c 'CREATE DATABASE phantoms;' -U postgres
-
+  - psql -c 'CREATE DATABASE test;' -U postgres
 install: npm install
 
 notifications: 

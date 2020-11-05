@@ -97,13 +97,13 @@ describe(' get Buses', () => {
       it('get bus by id', (done) => {
         chai
           .request(app)
-          .get('/api/v1/buses/1')
+          .get('/api/v1/buses/2')
           .set('x-access-token', adminToken)
           .set('request.params', 1)
           .end((err, res) => {
-            expect(res).to.have.status(401);
+            expect(res).to.have.status(200);
             expect(res).to.have.property('status');
-            expect(res.body.status).to.eql(401);
+            expect(res.body.status).to.eql(200);
             expect(res.body.message).to.be.a('string');
             done(err);
           });

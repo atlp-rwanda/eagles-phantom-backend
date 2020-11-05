@@ -1,9 +1,15 @@
 import { Router } from 'express';
-import controllers from '../controllers/busController';
+// import controllers from '../controllers/busController';
+import controllers from '../controllers/bus.controller';
 import { validateBusInfo, validateBusUpdate } from '../middleware/bus.validation';
 import swagger from '../swagger/index';
 import isAdmin from '../middleware/isAdmin';
 import checkUser from '../middleware/checkUser';
+import permission from '../middleware/restricted';
+import emailValidation from '../validations/emailValidation';
+import checkExist from '../middleware/checkExist'
+import isOperator from '../middleware/isOperator';
+import isAdminOrOperator from '../middleware/isAdminOrOperator'
 
 const router = Router();
 
@@ -13,7 +19,6 @@ const router = Router();
  *   post:
  *     tags:
  *       - Buses
- *     summary: create a bus
  *     name: Create Buses
  *     produces:
  *       - application/json
@@ -59,7 +64,6 @@ router.post('/buses', checkUser, isAdmin, [validateBusInfo], controllers.createB
  *   get:
  *     tags:
  *       - Buses
- *     summary: get all buses
  *     name: Retrieve all Buses
  *     produces:
  *       - application/json
@@ -89,15 +93,13 @@ router.post('/buses', checkUser, isAdmin, [validateBusInfo], controllers.createB
  *       '400':
  *             description: The bus you're trying to reach doesn't exist.
  */
-router.get('/buses', checkUser, isAdmin, controllers.getAllBuses);
-
+router.get('/buses', checkUser,  controllers.getAllBuses);
 /**
  * @swagger
  * /api/v1/buses/{id}:
  *   get:
  *     tags:
  *       - Buses
- *     summary: get Bus by Id
  *     name: Retrieve a Bus
  *     produces:
  *       - application/json
@@ -126,7 +128,6 @@ router.get('/buses/:id', checkUser, isAdmin, controllers.getBusById);
  *   patch:
  *     tags:
  *       - Buses
- *     summary: update Bus
  *     name: Update Buses
  *     produces:
  *       - application/json
@@ -176,7 +177,6 @@ router.patch('/buses/:id', checkUser, isAdmin, [validateBusUpdate], controllers.
  *   delete:
  *     tags:
  *       - Buses
- *     summary: delete Bus
  *     name: Delete Buses
  *     produces:
  *       - application/json
@@ -197,6 +197,134 @@ router.patch('/buses/:id', checkUser, isAdmin, [validateBusUpdate], controllers.
  *             description: The bus you're trying to delete doesn't exist in the system.
  * */
 router.delete('/buses/:id', checkUser, isAdmin, controllers.deleteBus);
+
+/** 
+ * @swagger
+ * 
+ * /api/v1/assignDriver/{id}:
+ *  patch: 
+ *    summary: Assign driver to bus
+ *    description: Return assigned bus
+ *    tags:
+ *    - Assign driver to bus
+ *    parameters:
+ *    - in: header
+ *      name: x-access-token
+ *      required: true
+ *      type: string
+ *      description: token to authorize
+ *    - in: path
+ *      name: id
+ *      required: true
+ *      type: integer
+ *      description: Enter bus id
+ *    requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *    responses: 
+ *     200: 
+ *      description: Assigned Successfully
+ */
+    
+router.patch(
+    '/assignDriver/:id',
+    checkUser,
+    isAdminOrOperator,
+    emailValidation,
+    checkExist.ckeckUserEmail,
+    checkExist.checkID,
+    checkExist.checkRole,
+    checkExist.checkDriverAssigned,
+    checkExist.checkAssigned,
+    controllers.assignDriver);
+
+
+ /** 
+ * @swagger
+ * 
+ * /api/v1/unassignDriver/{id}:
+ *  patch: 
+ *    summary: Unassign driver to bus
+ *    description: Return unassigned bus
+ *    tags:
+ *    - Assign driver to bus
+ *    parameters:
+ *    - in: header
+ *      name: x-access-token
+ *      required: true
+ *      type: string
+ *      description: token to authorize
+ *    - in: path
+ *      name: id
+ *      required: true
+ *      type: integer
+ *      description: Enter bus id
+ *    requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               email:
+ *                 type: string
+ *    responses: 
+ *     200: 
+ *      description: Unassigned Successfully
+ */
+   
+    router.patch(
+        '/unassigndriver/:id',
+        emailValidation,
+        checkUser,
+        isAdminOrOperator,
+        checkExist.ckeckUserEmail,
+        checkExist.checkAssignment,
+        controllers.unassignDriver
+     );
+
+/** 
+ * @swagger
+ * 
+ * /api/v1/assignedbuses?page={page}&limit={limit}:
+ *  get: 
+ *    summary: Get assigned bus by page and limit
+ *    description: Retrieve assigned bus by page and limit
+ *    tags:
+ *    - Assign driver to bus
+ *    parameters:
+ *    - in: header
+ *      name: x-access-token
+ *      required: true
+ *      type: string
+ *      description: token to authorize
+ *    - in: path
+ *      name: page
+ *      required: true
+ *      type: integer
+ *      default: 1
+ *      description: Enter page number
+ *    - in: path
+ *      name: limit
+ *      required: true
+ *      type: integer
+ *      default: 10
+ *      description: Enter limit number of buses per page
+ *    responses: 
+ *     200: 
+ *      description: Retrieved Successfully
+ */
+     router.get(
+        '/assignedbuses',
+        checkUser,
+        isAdminOrOperator,
+        controllers.getAssignedBuses
+    )
+
 
 router.use('/api-docs', swagger);
 

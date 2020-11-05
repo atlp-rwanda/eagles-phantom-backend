@@ -75,13 +75,13 @@ class register {
       if (!user) {
         return res.status(404).json({
           status: 404,
-          message: 'The user with this email does not exist',
+          message: 'Wrong email, please enter the registered email.',
         });
       }
       if (!bcrypt.compareSync(password, user.password)) {
         return res.status(400).json({
           status: 400,
-          message: res.__('Invalid email or password'),
+          message: res.__('Wrong password, Please enter the registered password.'),
         });
       }
       const payload = { email, role: user.role };
@@ -94,7 +94,6 @@ class register {
       const LoggedInUser = await Users.findOne({
         where: { email }
       });
-
       return res.status(200).json({
         status: 200,
         message: res.__('logged In successfull'),
