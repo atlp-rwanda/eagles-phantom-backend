@@ -22,5 +22,17 @@
 	"Bus updated successfully": "Guhindura Bus byakunze",
 	"The bus you're searching for doesn't exist in the system": "The bus you're searching for doesn't exist in the system",
 	"There are no buses registered in the system": "There are no buses registered in the system",
-	"Bus retrieved successfully": "Bus retrieved successfully"
+	"Bus retrieved successfully": "Bus retrieved successfully",
+  "Welcome to phantom, a platform to facilitate the transportation mode in town!.":"Murakaza neza kuri fantom, urubuga rwo koroshya uburyo bwo gutwara abantu mumujyi!.",
+  "The user with this email":"Umukoresha hamwe niyi imeri",
+  "Assignment created successfully":"Umukoro wakozwe neza",
+  "There are no bus(es) assigned to any route(s)":"Nta bus (es) zahawe inzira iyo ari yo yose",
+  "Please sign as an operator":"Nyamuneka sinya nkumukoresha",
+  "There are no bus(es) assigned to any route(s) or this pages does not exist yet":"Nta bisi (es) zahawe inzira cyangwa iyi page ntikibaho",
+  "The route you are looking for is not in the system": "Inzira ushaka ntabwo iri muri sisitemu",
+  "The bus you are looking for is not in the system": "Bisi urimo gushaka ntabwo iri muri sisitemu",
+  "the bus was assigned successfully": "bisi yashinzwe neza",
+  "The page you are looking for is not yet created": "Urupapuro urimo gushakisha ntirurema",
+  "Here are the buses assigned to routes": "Hano bisi zahawe inzira",
+  "This page does not exist": "Uru rupapuro ntirubaho"
 }

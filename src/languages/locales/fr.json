@@ -14,5 +14,17 @@
     "Invalid token": "Jeton invalide",
     "User with that email is not found": "L'utilisateur avec cet e-mail est introuvable",
     "Please sign as the admin": "Veuillez vous connecter en tant qu'administrateur",
-    "The email and it confirmation are not the same":"L'email et la confirmation ne sont pas les mêmes"
+    "The email and it confirmation are not the same":"L'email et la confirmation ne sont pas les mêmes",
+    "Welcome to phantom, a platform to facilitate the transportation mode in town!.":"Bienvenue sur phantom, une plateforme pour faciliter le mode de transport en ville !.",
+    "The user with this email":"L'utilisateur avec cet e-mail",
+    "Assignment created successfully":"Devoir créé avec succès",
+    "There are no bus(es) assigned to any route(s)":"Il n'y a aucun bus assigné à aucun itinéraire (s)",
+    "Please sign as an operator":"Veuillez vous connecter en tant qu'opérateur",
+    "There are no bus(es) assigned to any route(s) or this pages does not exist yet":"Il n'y a pas de bus assigné à aucune route (s) ou cette page n'existe pas encore",
+    "The route you are looking for is not in the system": "L'itinéraire que vous recherchez n'est pas dans le système",
+    "The bus you are looking for is not in the system": "Le bus que vous recherchez n'est pas dans le système",
+    "the bus was assigned successfully": "le bus a été attribué avec succès",
+    "The page you are looking for is not yet created": "La page que vous recherchez n'est pas encore créée",
+    "Here are the buses assigned to routes": "Voici les bus affectés aux itinéraires",
+    "This page does not exist": "Cette page n'existe pas"
 }

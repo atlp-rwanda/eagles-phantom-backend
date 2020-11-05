@@ -1,35 +1,23 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Buses', {
+    await queryInterface.createTable('Routes', {
       id: {
+        type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
+      },
+      routeID: {
         type: Sequelize.INTEGER,
       },
-      driver: {
+      direction: {
         type: Sequelize.STRING,
       },
-      busPlate: {
+      from: {
         type: Sequelize.STRING,
       },
-      busStatus: {
+      to: {
         type: Sequelize.STRING,
-      },
-      busLocation: {
-        type: Sequelize.STRING,
-      },
-      busCompany: {
-        type: Sequelize.STRING,
-      },
-      busSeats: {
-        type: Sequelize.INTEGER,
-      },
-      type: {
-        type: Sequelize.STRING,
-      },
-      routeId: {
-        type: Sequelize.INTEGER,
       },
       createdAt: {
         allowNull: false,
@@ -42,6 +30,6 @@ module.exports = {
     });
   },
   down: async (queryInterface) => {
-    await queryInterface.dropTable('Buses');
+    await queryInterface.dropTable('Routes');
   },
 };
