@@ -65,6 +65,35 @@ const user = [
     email: 'el.ally741operator@gmail.com',
     role: 'operator',
   },
+  {
+    buscompany: 'rftc',
+    bustype: 'twegerane',
+    busplate: 'RAY777A',
+    direction_start: 'Kimironko',
+    direction_end: 'Kicukiro',
+    routecode: 'kimTOkic',
+    price: '470RWF',
+  },
+  {
+    buscompany: 'rftc',
+    bustype: 'twegerane',
+    busplate: 'RAY777A',
+    direction_start: 'Kimironko',
+    direction_end: 'Kicukiro',
+    routecode: 'kimTOkic',
+  },
+  {
+    routeID: 304,
+    direction: 'Kacyiru - Town',
+    from: 'Kacyiru',
+    to: 'Town',
+  },
+  {
+    routeID: 304,
+  },
+  {
+    routeID: 4444,
+  },
 ];
 
 export default user;

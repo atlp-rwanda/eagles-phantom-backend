@@ -62,9 +62,9 @@ describe('Buses', () => {
   it('shouldn\'t get bus by id if the bus doesn\'t exist in the system', (done) => {
     chai
       .request(app)
-      .get('/api/v1/buses/2')
+      .get('/api/v1/buses/100')
       .set('x-access-token', adminToken)
-      .set('request.params', 2)
+      .set('request.params', 100)
       .end((err, res) => {
         expect(res).to.have.status(401);
         expect(res).to.have.property('status');
@@ -122,11 +122,11 @@ describe('Buses', () => {
   it('should not delete bus if it does not exist in the system', (done) => {
     chai
       .request(app)
-      .delete('/api/v1/buses/2')
+      .delete('/api/v1/buses/101')
       .set('x-access-token', adminToken)
-      .set('request.params', 2)
+      .set('request.params', 101)
       .send({
-        busId: 2,
+        busId: 101,
       })
       .end((err, res) => {
         expect(res).to.have.status(403);

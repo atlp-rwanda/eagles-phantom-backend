@@ -31,5 +31,17 @@
 	"Bus updated successfully": "Bus updated successfully",
 	"The bus you're searching for doesn't exist in the system": "The bus you're searching for doesn't exist in the system",
 	"Bus retrieved successfully": "Bus retrieved successfully",
-	"can't update bus": "can't update bus"
+	"can't update bus": "can't update bus",
+	"Assignment created successfully": "Assignment created successfully",
+	"There are no bus(es) assigned to any route(s)": "There are no bus(es) assigned to any route(s)",
+	"Please sign as an operator": "Please sign as an operator",
+	"There are no bus(es) assigned to any route(s) or this pages does not exist yet": "There are no bus(es) assigned to any route(s) or this pages does not exist yet",
+	"can't assign bus to route": "can't assign bus to route",
+	"route doesn't exist": "route doesn't exist",
+	"The page you are looking for is not yet created": "The page you are looking for is not yet created",
+	"The route you are looking for is not in the system": "The route you are looking for is not in the system",
+	"The bus you are looking for is not in the system": "The bus you are looking for is not in the system",
+	"the bus was assigned successfully": "the bus was assigned successfully",
+	"Here are the buses assigned to routes": "Here are the buses assigned to routes",
+	"This page does not exist": "This page does not exist"
 }
