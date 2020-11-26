@@ -1,6 +1,8 @@
 import express from 'express';
 import userController from '../controllers/registcontroller';
+import { validateSignin } from '../validations/signin';
 import checkUser from '../middleware/checkUser';
+// import middlelogout from '../middleware/logoutChecker';
 import { validationError } from '../validations/signup';
 import { validation } from '../validations/updateProfile';
 import { validationErrorForgotten } from '../validations/validationErrorForgotten';
@@ -45,7 +47,8 @@ const router = express.Router();
  *         description: login successfully
  */
 
-router.post('/login', userController.login);
+router.post('/login', validateSignin, userController.login);
+
 /**
 * @swagger
 * /api/v1/auth/register:
@@ -200,5 +203,6 @@ router.put('/reset-password/:resetToken', validationErrorReset, userController.r
 * */
 
 router.patch('/updateprofile', checkUser, validation, userController.updateProfile);
+
 
 export default router;

@@ -3,8 +3,8 @@ import Models from '../database/models';
 const { Users } = Models;
 
 const isAdmin = async (req, res, next) => {
-  const { email, role } = req.user.payload;
-  const user = await Users.findOne({ where: { email: req.user.payload.email } });
+  const { email, role } = req.user;
+  const user = await Users.findOne({ where: { email: req.user.email } });
   if (!user) {
     return res.status(403).json({
       status: 403,

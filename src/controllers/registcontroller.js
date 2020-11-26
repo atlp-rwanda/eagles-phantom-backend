@@ -3,6 +3,7 @@ import mail from '@sendgrid/mail';
 import { v4 as uuidv4 } from 'uuid';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import localStorage from 'localStorage';
 import Models from '../database/models';
 import { password } from '../utils/password';
 import { message } from '../utils/mails';
@@ -53,7 +54,7 @@ class register {
         dateofbirth: newUser.dateofbirth,
         gender: newUser.dateofbirth,
         address: newUser.address,
-        role: newUser.role,
+        role: newUser.role
       };
       message(email);
       return res.status(201).json({
@@ -74,21 +75,31 @@ class register {
       if (!user) {
         return res.status(404).json({
           status: 404,
-          message: 'The user with this email does not exist',
+          message: 'Wrong email, please enter the registered email.',
         });
       }
       if (!bcrypt.compareSync(password, user.password)) {
         return res.status(400).json({
           status: 400,
-          message: res.__('Invalid email or password'),
+          message: res.__('Wrong password, Please enter the registered password.'),
         });
       }
       const payload = { email, role: user.role };
       const accessToken = encode(payload);
+
+      // Update user
+      await Users.update({ isLoggedIn: true },
+        {where: { email } });
+
+      const LoggedInUser = await Users.findOne({
+        where: { email }
+      });
+     
       return res.status(200).json({
         status: 200,
         message: res.__('logged In successfull'),
         token: accessToken,
+        userLoggedIn: LoggedInUser.isLoggedIn
       });
     } catch (error) {
       return res.status(500).json({
@@ -97,6 +108,29 @@ class register {
       });
     }
   }
+
+
+
+static async logout(req,res){
+  try {
+    // const isUpdated =  await Users.update(
+    //     { isLoggedIn: false },
+    //     { where: { email: req.user.email },returning: true,attributes: {
+    //       exclude: ['password'],
+    //     }, }
+    //   );
+    //   console.log(isUpdated)
+        return res.status(200).json({
+          message: res.__("Logout successfully"),
+        //  isLoggedIn:isUpdated[1][0].isLoggedIn
+        });
+       
+    } catch (error) {
+      return res.status(500).json({
+        error: error.message,
+      });
+    } }
+  // updating driver or operator profile
   static async updateProfile(req, res) {
     try {
       const { email } = req.user;
@@ -105,7 +139,6 @@ class register {
         returning: true,
         plain: true,
       });
-
       const userData = updatedField[1];
       return res.status(200).json({
         status: 200,

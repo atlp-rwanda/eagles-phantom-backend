@@ -3,7 +3,7 @@ import Models from '../database/models';
 const { Users } = Models;
 
 const isOperator = async (req, res, next) => {
-  const { email, role } = req.user.payload;
+  const { email, role } = req.user;
   const user = await Users.findOne({ where: { email } });
   if (!user) {
     return res.status(403).json({

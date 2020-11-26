@@ -7,4 +7,5 @@ for (let i = 0; i < 10; i++) {
   rawPassword += possible.charAt(Math.floor(Math.random() * possible.length));
 }
 
+
 export const password = bcrypt.hashSync(rawPassword, 10);

@@ -22,7 +22,8 @@
     "exclude": [
       "src/database/seeders",
       "src/database/migrations",
-      "coverage"
+      "coverage",
+      "src/test"
     ]
   },
   "repository": {
@@ -61,11 +62,12 @@
     "jest": "^26.5.2",
     "joi": "^17.2.1",
     "jsonwebtoken": "^8.5.1",
+    "localStorage": "^1.0.4",
     "mocha": "^8.2.1",
     "nodemon": "^2.0.4",
     "paginate-info": "^1.0.4",
-    "pg": "^8.4.0",
     "path": "^0.12.7",
+    "pg": "^8.4.0",
     "pg-hstore": "^2.3.3",
     "rm": "^0.1.8",
     "sequelize": "^6.3.5",

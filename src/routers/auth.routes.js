@@ -1,6 +1,7 @@
 import express from 'express';
 import userController from '../controllers/registcontroller';
 import checkUser from '../middleware/checkUser';
+import { validateSignin } from '../validations/signin';
 import users from '../controllers/users';
 import { validationError } from '../validations/signup';
 import validRole from '../validations/validRole';
@@ -47,7 +48,9 @@ const router = express.Router();
  *         description: login successfully
  */
 
-router.post('/login', userController.login);
+router.post('/login', validateSignin, userController.login);
+
+
 /**
 * @swagger
 * /api/v1/auth/register:
@@ -202,6 +205,30 @@ router.put('/reset-password/:resetToken', validationErrorReset, userController.r
 * */
 
 router.patch('/updateprofile', checkUser, validation, userController.updateProfile);
+
+/**
+ * @swagger
+ * /api/v1/auth/logout:
+ *   get:
+ *     tags:
+ *       - Users
+ *     name: logout
+ *     summary: Log out auth-user
+ *     produces:
+ *       - application/json
+ *     consumes:
+ *       - application/json
+ *     parameters:
+ *       - name: x-access-token
+ *         in: header
+ *         description: jwt token of the user
+ *     responses:
+ *       '200':
+ *             description: User is successfully logged out
+ * */
+
+router.get('/logout',userController.logout);  
+
 /** 
  * @swagger
  * /api/v1/users/{userId}:
@@ -287,4 +314,29 @@ router.get('/',checkUser,isAdmin,users.getUsers);
  *         descriptuion: Bad request
  * */
 router.patch('/:userId',checkUser, isAdmin,validRole,users.updateUser);
+
+/**
+* @swagger
+* /api/v1/auth/allusers:
+*   get:
+*     tags:
+*       - Users
+*     name: Allusers
+*     summary: Get All drivers and operator
+*     produces:
+*       - application/json
+*     consumes:
+*       - application/json
+*     parameters:
+*       - name: x-access-token
+*         in: header
+*         description: jwt token of the user
+*     responses:
+*       '201':
+*             description: user updated successfully.
+*       '400':
+*             description: Bad request.
+* */
+
+router.get('/allusers',  checkUser, isAdmin, userController.getallusers);
 export default router;

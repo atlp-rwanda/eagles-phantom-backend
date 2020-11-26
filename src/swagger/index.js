@@ -1,6 +1,6 @@
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerui from 'swagger-ui-express';
-
+import path from 'path'
 import os from 'os';
 
 import pkg from 'express';
@@ -26,12 +26,14 @@ const swaggerDefinition = {
       name: `${os.hostname()}`,
     },
     {
-      url: 'https://phantom-eagles-backend.herokuapp.com',
+      url: 'https://phantom-backend2-staging.herokuapp.com',
       name: `${os.hostname()}`,
     },
     ],
   },
-  apis: ['./src/routers/routers.js'],
+  apis: [
+    path.resolve(__dirname, '../routers/*.js'),
+    ],
 };
 
 const swaggerDocument = swaggerJSDoc(swaggerDefinition);

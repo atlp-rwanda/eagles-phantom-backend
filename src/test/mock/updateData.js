@@ -10,7 +10,13 @@ exports.nameNotFound = {
   birthdate: '01-01-2020',
   gender: 'male',
 };
-
+exports.updatedInfo = {
+  firstname: 'Joshncuti',
+  lastname: 'Karangwa',
+  dateofbirth: '1/1/2020',
+  gender: 'Male',
+  address: 'Kanombe',
+};
 exports.firstnameIsEmpty = {
   firstname: '',
   email: 'Josh@gmail.com',
