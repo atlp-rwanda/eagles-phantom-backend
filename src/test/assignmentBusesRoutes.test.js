@@ -22,9 +22,9 @@ describe('Tests for the assignment of buses to routes and getting the assigned b
       .set('x-access-token', operatorToken)
       .send(user[16])
       .end((error, res) => {
-        expect(res).to.have.status([403]);
+        expect(res).to.have.status([401]);
         expect(res.body).to.have.property('status');
-        expect(res.body.status).to.be.equal(403);
+        expect(res.body.status).to.be.equal(401);
         expect(res.body).to.have.property('message');
         expect(res.body.message).to.be.a('string');
         done(error);
@@ -48,9 +48,9 @@ describe('Tests for the assignment of buses to routes and getting the assigned b
       .patch(prefix1)
       .set('x-access-token', operatorToken)
       .end((error, res) => {
-        expect(res).to.have.status([403]);
+        expect(res).to.have.status([401]);
         expect(res.body).to.have.property('status');
-        expect(res.body.status).to.be.equal(403);
+        expect(res.body.status).to.be.equal(401);
         expect(res.body).to.have.property('message');
         expect(res.body.message).to.be.a('string');
         done(error);
@@ -91,9 +91,9 @@ describe('Tests for the assignment of buses to routes and getting the assigned b
       .set('x-access-token', operatorToken)
       .send(user[17])
       .end((error, res) => {
-        expect(res).to.have.status([403]);
+        expect(res).to.have.status([401]);
         expect(res.body).to.have.property('status');
-        expect(res.body.status).to.be.equal(403);
+        expect(res.body.status).to.be.equal(401);
         expect(res.body).to.have.property('message');
         expect(res.body.message).to.be.a('string');
         done(error);
@@ -105,9 +105,9 @@ describe('Tests for the assignment of buses to routes and getting the assigned b
       .set('x-access-token', operatorToken)
       .send(user[16])
       .end((error, res) => {
-        expect(res).to.have.status([403]);
+        expect(res).to.have.status([401]);
         expect(res.body).to.have.property('status');
-        expect(res.body.status).to.be.equal(403);
+        expect(res.body.status).to.be.equal(401);
         expect(res.body).to.have.property('message');
         expect(res.body.message).to.be.a('string');
         done(error);

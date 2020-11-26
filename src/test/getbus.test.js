@@ -74,7 +74,7 @@ describe(' get Buses', () => {
           .get('/api/v1/buses?page=1&limit=10')
           .set('x-access-token', adminToken)
           .end((err, res) => {
-            expect(res).to.have.status(403);
+            expect(res).to.have.status(200);
             expect(res).to.have.property('status');
             expect(res.body).to.be.an('object');
             done(err);
@@ -87,9 +87,9 @@ describe(' get Buses', () => {
           .set('x-access-token', adminToken)
           .set('request.params', 100)
           .end((err, res) => {
-            expect(res).to.have.status(403);
+            expect(res).to.have.status(401);
             expect(res).to.have.property('status');
-            expect(res.body.status).to.eql(403);
+            expect(res.body.status).to.eql(401);
             expect(res.body.message).to.be.a('string');
             done(err);
           });
@@ -101,9 +101,9 @@ describe(' get Buses', () => {
           .set('x-access-token', adminToken)
           .set('request.params', 1)
           .end((err, res) => {
-            expect(res).to.have.status(403);
+            expect(res).to.have.status(401);
             expect(res).to.have.property('status');
-            expect(res.body.status).to.eql(403);
+            expect(res.body.status).to.eql(401);
             expect(res.body.message).to.be.a('string');
             done(err);
           });
@@ -114,9 +114,9 @@ describe(' get Buses', () => {
           .get('/api/v1/buses/yuu')
           .set('x-access-token', adminToken)
           .end((err, res) => {
-            expect(res).to.have.status(403);
+            expect(res).to.have.status(400);
             expect(res).to.have.property('status');
-            expect(res.body.status).to.eql(403);
+            expect(res.body.status).to.eql(400);
             expect(res.body.message).to.be.a('string');
             done(err);
           });
@@ -127,9 +127,9 @@ describe(' get Buses', () => {
           .get('/api/v1/buses/yuu')
           .set('x-access-token', adminToken)
           .end((err, res) => {
-            expect(res).to.have.status(403);
+            expect(res).to.have.status(400);
             expect(res).to.have.property('status');
-            expect(res.body.status).to.eql(403);
+            expect(res.body.status).to.eql(400);
             expect(res.body.message).to.be.a('string');
             done(err);
           });
