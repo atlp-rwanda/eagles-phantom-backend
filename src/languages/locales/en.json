@@ -43,5 +43,12 @@
 	"The bus you are looking for is not in the system": "The bus you are looking for is not in the system",
 	"the bus was assigned successfully": "the bus was assigned successfully",
 	"Here are the buses assigned to routes": "Here are the buses assigned to routes",
-	"This page does not exist": "This page does not exist"
+	"This page does not exist": "This page does not exist",
+	"login again": "login again",
+	"log in to get access": "log in to get access",
+	"login again kado": "login again kado",
+	"Logout successfully": "Logout successfully",
+	"You're not logged in": "You're not logged in",
+	"Invalid tokennnn": "Invalid tokennnn",
+	"you are not logged in": "you are not logged in"
 }

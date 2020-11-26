@@ -17,7 +17,7 @@ describe(' create Buses', () => {
           .set('x-access-token', adminToken)
           .send(bus)
           .end((err, res) => {
-            expect(res).to.have.status(403);
+            expect(res).to.have.status(400);
             expect(res).to.have.property('status');
             expect(res.body).to.be.an('object');
             done(err);
@@ -36,4 +36,4 @@ describe(' create Buses', () => {
           done();
           });
       });
-})
+ })

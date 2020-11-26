@@ -21,7 +21,7 @@ it('delete buses', (done) => {
         busId: 1,
       })
       .end((err, res) => {
-        expect(res).to.have.status(403);
+        expect(res).to.have.status(200);
         expect(res).to.have.property('status');
         expect(res.body).to.have.property('message');
         expect(res.body.message).to.be.a('string');
@@ -75,7 +75,7 @@ it('delete buses', (done) => {
       .delete('/api/v1/buses/yuu')
       .set('x-access-token', adminToken)
       .end((err, res) => {
-        expect(res).to.have.status(403);
+        expect(res).to.have.status(400);
         expect(res).to.have.property('status');
         expect(res.body).to.have.property('message');
         expect(res.body.message).to.be.a('string');
