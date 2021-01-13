@@ -1,6 +1,7 @@
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../app';
+
 chai.use(chaiHttp);
 describe('Sign in route', () => {
   it('should not logIn if the wrong email is provided', (done) => {

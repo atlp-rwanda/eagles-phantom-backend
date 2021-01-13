@@ -8,5 +8,3 @@ const welcome = app.get('/', (req, res) => {
 });
 
 export default welcome;
-
-

@@ -34,5 +34,10 @@
   "the bus was assigned successfully": "bisi yashinzwe neza",
   "The page you are looking for is not yet created": "Urupapuro urimo gushakisha ntirurema",
   "Here are the buses assigned to routes": "Hano bisi zahawe inzira",
-  "This page does not exist": "Uru rupapuro ntirubaho"
+  "This page does not exist": "Uru rupapuro ntirubaho",
+  "this route doesn't exist in the system": "Uyu muhanda nturi muri sisitemu",
+  "origin should be not less than 4 characters": "origin ntigomba kugira inyuguti ziri munsi y 4",
+	"origin is required":"origin irakenewe",
+	"destination should be not less than 4 characters": "destination ntigomba kugira inyuguti ziri munsi y 4",
+	"destination is required":"destination irakenewe"
 }

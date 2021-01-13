@@ -1,7 +1,7 @@
-'use strict';
 const {
-  Model
+  Model,
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
   class Bus extends Model {
     /**
@@ -15,20 +15,21 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'userId',
         as: 'driver',
         onDelete: 'CASCADE',
-      })
+      });
     }
-  };
+  }
+
   Bus.init({
     busPlate: DataTypes.STRING,
     busStatus: DataTypes.STRING,
     busLocation: DataTypes.STRING,
     busCompany: DataTypes.STRING,
     busSeats: DataTypes.STRING,
-    userId: DataTypes.STRING
+    userId: DataTypes.STRING,
+    routeId: DataTypes.INTEGER,
   }, {
     sequelize,
     modelName: 'Bus',
   });
   return Bus;
 };
- 

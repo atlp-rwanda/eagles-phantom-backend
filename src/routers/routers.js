@@ -1,6 +1,6 @@
 import express from 'express';
-import welcome from '../controllers/user';
-import userController from '../controllers/userController';
+import welcome from '../controllers/users';
+import userController from '../controllers/registcontroller';
 import swagger from '../swagger/index';
 
 const router = express.Router();
