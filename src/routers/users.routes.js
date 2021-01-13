@@ -204,5 +204,4 @@ router.put('/reset-password/:resetToken', validationErrorReset, userController.r
 
 router.patch('/updateprofile', checkUser, validation, userController.updateProfile);
 
-
 export default router;

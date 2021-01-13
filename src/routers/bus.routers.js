@@ -5,11 +5,10 @@ import { validateBusInfo, validateBusUpdate } from '../middleware/bus.validation
 import swagger from '../swagger/index';
 import isAdmin from '../middleware/isAdmin';
 import checkUser from '../middleware/checkUser';
-import permission from '../middleware/restricted';
 import emailValidation from '../validations/emailValidation';
-import checkExist from '../middleware/checkExist'
-import isOperator from '../middleware/isOperator';
-import isAdminOrOperator from '../middleware/isAdminOrOperator'
+import checkExist from '../middleware/checkExist';
+import isAdminOrOperator from '../middleware/isAdminOrOperator';
+import { viewBusValidation } from '../validations/bus.validator';
 
 const router = Router();
 
@@ -93,7 +92,7 @@ router.post('/buses', checkUser, isAdmin, [validateBusInfo], controllers.createB
  *       '400':
  *             description: The bus you're trying to reach doesn't exist.
  */
-router.get('/buses', checkUser,  controllers.getAllBuses);
+router.get('/buses', checkUser, controllers.getAllBuses);
 /**
  * @swagger
  * /api/v1/buses/{id}:
@@ -198,11 +197,11 @@ router.patch('/buses/:id', checkUser, isAdmin, [validateBusUpdate], controllers.
  * */
 router.delete('/buses/:id', checkUser, isAdmin, controllers.deleteBus);
 
-/** 
+/**
  * @swagger
- * 
+ *
  * /api/v1/assignDriver/{id}:
- *  patch: 
+ *  patch:
  *    summary: Assign driver to bus
  *    description: Return assigned bus
  *    tags:
@@ -226,29 +225,29 @@ router.delete('/buses/:id', checkUser, isAdmin, controllers.deleteBus);
  *             properties:
  *               email:
  *                 type: string
- *    responses: 
- *     200: 
+ *    responses:
+ *     200:
  *      description: Assigned Successfully
  */
-    
+
 router.patch(
-    '/assignDriver/:id',
-    checkUser,
-    isAdminOrOperator,
-    emailValidation,
-    checkExist.ckeckUserEmail,
-    checkExist.checkID,
-    checkExist.checkRole,
-    checkExist.checkDriverAssigned,
-    checkExist.checkAssigned,
-    controllers.assignDriver);
+  '/assignDriver/:id',
+  checkUser,
+  isAdminOrOperator,
+  emailValidation,
+  checkExist.ckeckUserEmail,
+  checkExist.checkID,
+  checkExist.checkRole,
+  checkExist.checkDriverAssigned,
+  checkExist.checkAssigned,
+  controllers.assignDriver,
+);
 
-
- /** 
+/**
  * @swagger
- * 
+ *
  * /api/v1/unassignDriver/{id}:
- *  patch: 
+ *  patch:
  *    summary: Unassign driver to bus
  *    description: Return unassigned bus
  *    tags:
@@ -272,26 +271,26 @@ router.patch(
  *             properties:
  *               email:
  *                 type: string
- *    responses: 
- *     200: 
+ *    responses:
+ *     200:
  *      description: Unassigned Successfully
  */
-   
-    router.patch(
-        '/unassigndriver/:id',
-        emailValidation,
-        checkUser,
-        isAdminOrOperator,
-        checkExist.ckeckUserEmail,
-        checkExist.checkAssignment,
-        controllers.unassignDriver
-     );
 
-/** 
+router.patch(
+  '/unassigndriver/:id',
+  emailValidation,
+  checkUser,
+  isAdminOrOperator,
+  checkExist.ckeckUserEmail,
+  checkExist.checkAssignment,
+  controllers.unassignDriver,
+);
+
+/**
  * @swagger
- * 
+ *
  * /api/v1/assignedbuses?page={page}&limit={limit}:
- *  get: 
+ *  get:
  *    summary: Get assigned bus by page and limit
  *    description: Retrieve assigned bus by page and limit
  *    tags:
@@ -314,17 +313,51 @@ router.patch(
  *      type: integer
  *      default: 10
  *      description: Enter limit number of buses per page
- *    responses: 
- *     200: 
+ *    responses:
+ *     200:
  *      description: Retrieved Successfully
  */
-     router.get(
-        '/assignedbuses',
-        checkUser,
-        isAdminOrOperator,
-        controllers.getAssignedBuses
-    )
+router.get(
+  '/assignedbuses',
+  checkUser,
+  isAdminOrOperator,
+  controllers.getAssignedBuses,
+);
 
+/**
+ * @swagger
+ *
+ * /api/v1/bus/routes?origin={origin}&destination={destination}:
+ *  get:
+ *   summary: View a list of buses in route
+ *   description: View Buses in your route
+ *   tags:
+ *   - Buses
+ *   parameters:
+ *    - in: query
+ *      name: origin
+ *      required: true
+ *      type: string
+ *      default: down-town
+ *      description: Enter you origin
+ *    - in: query
+ *      name: destination
+ *      required: true
+ *      type: string
+ *      default: Kabeza
+ *      description: Enter your destination
+ *   responses:
+ *    200:
+ *     description: Retrieved Buses in  your route Successfully
+ *    401:
+ *     description: Unauthorized
+ *    400:
+ *     description: Invalid inputs
+ *    500:
+ *     description: Internal Server Error
+ */
+
+router.get('/bus/routes', viewBusValidation, checkExist.checkRouteExist, controllers.viewListOfBuses);
 
 router.use('/api-docs', swagger);
 

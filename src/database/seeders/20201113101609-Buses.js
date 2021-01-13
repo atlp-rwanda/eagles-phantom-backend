@@ -10,7 +10,7 @@ module.exports = {
         busLocation: 'Remera',
         type: 'coaster',
         busSeats: 6,
-        routeId: 9,
+        routeId: 4,
         createdAt: new Date(),
         updatedAt: new Date(),
       },

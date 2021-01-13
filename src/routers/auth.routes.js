@@ -226,9 +226,9 @@ router.patch('/updateprofile', checkUser, validation, userController.updateProfi
  *             description: User is successfully logged out
  * */
 
-router.get('/logout', checkUser, userController.logout);  
+router.get('/logout', checkUser, userController.logout);
 
-/** 
+/**
  * @swagger
  * /api/v1/users/{userId}:
  *   get:
@@ -251,7 +251,7 @@ router.get('/logout', checkUser, userController.logout);
  *       401:
  *         description: you don't permissions
  * */
-router.get('/:userId',checkUser, isAdmin,users.getUserbyId);
+router.get('/:userId', checkUser, isAdmin, users.getUserbyId);
 
 /**
  * @swagger
@@ -276,8 +276,8 @@ router.get('/:userId',checkUser, isAdmin,users.getUserbyId);
  *       '403':
  *             description: There are no Users registered in the system.
  */
-router.get('/',checkUser,isAdmin,users.getUsers);
-/** 
+router.get('/', checkUser, isAdmin, users.getUsers);
+/**
  * @swagger
  * /api/v1/users/{userId}:
  *   patch:
@@ -312,7 +312,7 @@ router.get('/',checkUser,isAdmin,users.getUsers);
  *       400:
  *         descriptuion: Bad request
  * */
-router.patch('/:userId',checkUser, isAdmin,validRole,users.updateUser);
+router.patch('/:userId', checkUser, isAdmin, validRole, users.updateUser);
 
 /**
 * @swagger
@@ -337,5 +337,5 @@ router.patch('/:userId',checkUser, isAdmin,validRole,users.updateUser);
 *             description: Bad request.
 * */
 
-router.get('/allusers',  checkUser, isAdmin, userController.getallusers);
+router.get('/allusers', checkUser, isAdmin, userController.getallusers);
 export default router;

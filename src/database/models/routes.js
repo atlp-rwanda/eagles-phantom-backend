@@ -12,14 +12,14 @@ module.exports = (sequelize, DataTypes) => {
   }
 
   Routes.init({
-    routeID: DataTypes.STRING,
+    routeID: DataTypes.INTEGER,
     origin: DataTypes.STRING,
-    price:DataTypes.STRING,
+    price: DataTypes.STRING,
     destination: DataTypes.STRING,
   },
-{
-  sequelize,
-  modelName: 'Routes',
-});
-return Routes;
+  {
+    sequelize,
+    modelName: 'Routes',
+  });
+  return Routes;
 };
