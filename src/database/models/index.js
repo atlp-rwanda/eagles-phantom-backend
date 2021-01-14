@@ -10,9 +10,17 @@ const db = {};
 
 let sequelize;
 if (config.url) {
-  sequelize = new Sequelize(config.url, config);
+  sequelize = new Sequelize(config.url, config, {
+    ssl: {
+      rejectUnauthorized: false,
+    },
+  });
 } else {
-  sequelize = new Sequelize(config.database, config.username, config.password, config);
+  sequelize = new Sequelize(config.database, config.username, config.password, config, {
+    ssl: {
+      rejectUnauthorized: false,
+    },
+  });
 }
 
 fs
