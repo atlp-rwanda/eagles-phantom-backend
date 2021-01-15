@@ -1,4 +1,3 @@
-import express from 'express';
 import userController from '../controllers/registcontroller';
 import checkUser from '../middleware/checkUser';
 import users from '../controllers/users';
@@ -10,6 +9,7 @@ import { validationErrorForgotten } from '../validations/validationErrorForgotte
 import { validationErrorReset } from '../validations/validationErrorReset';
 import isAdmin from '../middleware/isAdmin';
 import isDriverOrOperator from '../middleware/isDriverOrOperator';
+import express from 'express'
 
 const router = express.Router();
 

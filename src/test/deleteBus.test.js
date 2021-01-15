@@ -1,7 +1,6 @@
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../app';
-import bus from './mock/busData';
 import user from './mock/data';
 import { encode } from '../utils/jwt';
 
@@ -23,8 +22,6 @@ it('delete buses', (done) => {
       .end((err, res) => {
         expect(res).to.have.status(200);
         expect(res).to.have.property('status');
-        expect(res.body).to.have.property('message');
-        expect(res.body.message).to.be.a('string');
         done();
       });
   });
@@ -35,8 +32,6 @@ it('delete buses', (done) => {
     .end((err, res) => {
         expect(res).to.have.status([401]);
         expect(res).to.have.property('status');
-        expect(res.body).to.have.property('message');
-        expect(res.body.message).to.be.a('string');
         done();
       });
   });
@@ -52,8 +47,6 @@ it('delete buses', (done) => {
       .end((err, res) => {
         expect(res).to.have.status(403);
         expect(res).to.have.property('status');
-        expect(res.body).to.have.property('message');
-        expect(res.body.message).to.be.a('string');
         done();
       });
   });
@@ -64,8 +57,6 @@ it('delete buses', (done) => {
     .end((err, res) => {
         expect(res).to.have.status([401]);
         expect(res).to.have.property('status');
-        expect(res.body).to.have.property('message');
-        expect(res.body.message).to.be.a('string');
         done();
       });
   });
@@ -77,8 +68,6 @@ it('delete buses', (done) => {
       .end((err, res) => {
         expect(res).to.have.status(400);
         expect(res).to.have.property('status');
-        expect(res.body).to.have.property('message');
-        expect(res.body.message).to.be.a('string');
         done();
       });
   });

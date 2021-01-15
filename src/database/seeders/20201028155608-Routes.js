@@ -40,3 +40,4 @@ module.exports = {
 
   down: (queryInterface) => queryInterface.bulkDelete('Routes', null, {}),
 };
+

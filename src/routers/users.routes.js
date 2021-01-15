@@ -1,7 +1,6 @@
 import express from 'express';
 import userController from '../controllers/registcontroller';
 import checkUser from '../middleware/checkUser';
-// import middlelogout from '../middleware/logoutChecker';
 import { validationError } from '../validations/signup';
 import { validateSignin } from '../validations/signin';
 import { validation } from '../validations/updateProfile';

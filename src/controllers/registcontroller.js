@@ -3,7 +3,6 @@ import mail from '@sendgrid/mail';
 import { v4 as uuidv4 } from 'uuid';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import localStorage from 'localStorage';
 import Models from '../database/models';
 import { password } from '../utils/password';
 import { message } from '../utils/mails';

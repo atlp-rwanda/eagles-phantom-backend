@@ -21,25 +21,20 @@ exports.InvalidEmail = {
 exports.requiredRole = {
     email: "mugemaleo@gmail.com"
 }
-
 exports.roleNotIncluded = {
     email: "mugemaleo@gmail.com",
     role: "dancer"
 }
-
 exports.rightInput = {
     email: "mugemaleo@gmail.com",
     role: "operator"
 }
-
 exports.requiredEmail = {
     role: "dancer"
 }
-
 exports.rightEmail ={
     email: "mugemaleo@gmail.com"
 }
-
 exports.invalidPassword ={
     password: "kiki"
 }

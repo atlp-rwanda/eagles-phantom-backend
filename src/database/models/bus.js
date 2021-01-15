@@ -27,6 +27,9 @@ module.exports = (sequelize, DataTypes) => {
     busSeats: DataTypes.STRING,
     userId: DataTypes.STRING,
     routeId: DataTypes.INTEGER,
+    type:DataTypes.STRING,
+    availableSeats:DataTypes.STRING,
+    commuters:DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Bus',
